@@ -21,8 +21,8 @@ public class Grille {
 
      @SuppressWarnings("empty-statement")
     public Grille(){
-        horizontale=28;
-        verticale=30;
+        horizontale=30;
+        verticale=28;
         tab= new int [][]{
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,3,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,3,0},

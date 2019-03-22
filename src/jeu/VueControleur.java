@@ -87,8 +87,7 @@ public class VueControleur extends Application {
                 int tab[][] = grilleJeu.getTab();
                 for(int i = 0;i<grilleJeu.getHorizontale();i++){
                     for(int j = 0;j<grilleJeu.getVerticale();j++){
-                        if(tab[i][j]==0){
-                            
+                        if(tab[i][j]==0){                            
                             imageViewTab[i][j].setImage(image);
                         }else{
                             imageViewTab[i][j].setImage(sansMur);
