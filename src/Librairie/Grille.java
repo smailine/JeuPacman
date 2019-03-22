@@ -11,6 +11,7 @@ package Librairie;
  */
 public class Grille {
      private int tab[][];
+<<<<<<< HEAD
      private int croisement[][];
      private int horizontale;
      private int verticale;
@@ -73,6 +74,60 @@ public class Grille {
     public int[][] getCroisement(){
     return croisement;}
     
+=======
+     private int horizontale;
+     private int verticale;
+     
+     
+    public Grille(){
+       this.setHorizontale(10); 
+       this.setVerticale(10);
+       this.tab = new int [][]
+               {
+                    {1,1,1,0,1,0,1,0,0,0},
+                    {1,1,1,0,1,0,1,0,0,0},
+                    {1,1,1,0,1,0,1,0,0,0},
+                    {1,1,1,0,1,0,1,0,0,0},
+                    {1,1,1,0,1,0,1,0,0,0},
+                    {1,1,1,0,1,0,1,0,0,0},
+                    {1,1,1,0,1,0,1,0,0,0},
+                    {1,1,1,0,1,0,1,0,0,0},
+                    {1,1,1,0,1,0,1,0,0,0},
+                    {1,1,1,0,1,0,1,0,0,0}
+                };
+     
+        /*for(int i = 0;i<this.horizontale;i++){
+            for(int j = 0;j<this.verticale;j++){
+                if(j%2==0){
+                  this.tab[i][j] = 0;
+                }else{
+                  this.tab[i][j] = 1;
+                }  
+            }
+            
+        }*/
+        
+        
+    }
+    
+    public Grille(int x, int y){
+        this.tab = new int [x][y];
+        
+        for(int i = 0;i<this.horizontale;i++){
+            for(int j = 0;j<this.verticale;j++){
+                if(j%2==0){
+                  this.tab[i][j] = 0;
+                }else{
+                  this.tab[i][j] = 1;
+                }  
+            }
+            
+        }
+    }
+
+     
+     
+>>>>>>> fc558fd1d2a1c736e0b99ee27c58588e7a145ebc
     
     public int[][] getTab() {
         return tab;
@@ -97,6 +152,7 @@ public class Grille {
     public void setVerticale(int verticale) {
         this.verticale = verticale;
     }
+<<<<<<< HEAD
     public void setScore(int valeur){
     score+=valeur;}
     
@@ -113,5 +169,9 @@ public class Grille {
     public int getNumFantomes(){
         return numFantomes;
     }
+=======
+    
+   
+>>>>>>> fc558fd1d2a1c736e0b99ee27c58588e7a145ebc
    
 }

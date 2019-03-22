@@ -1,7 +1,11 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
+<<<<<<< HEAD
  * and open the template in the editor.
+=======
+ * and open the template in the editor.   
+>>>>>>> fc558fd1d2a1c736e0b99ee27c58588e7a145ebc
  */
 package jeu;
 
@@ -22,6 +26,7 @@ public class Jeu extends Observable implements Runnable{
      */
     private Grille grille;
     private Console console;
+<<<<<<< HEAD
     private Pacman pacman;
     private FantomeNormal fan;
     
@@ -29,17 +34,29 @@ public class Jeu extends Observable implements Runnable{
        this.grille  = new Grille();
        this.pacman= new Pacman(grille);
        this.fan=new FantomeNormal(12,16,grille);
+=======
+    private Entite entite;
+    
+    public Jeu(){
+       this.grille  = new Grille();
+       this.entite = new Entite(grille);
+>>>>>>> fc558fd1d2a1c736e0b99ee27c58588e7a145ebc
     }
 
     public Grille getGrille() {
         return this.grille;
     }
 
+<<<<<<< HEAD
     public Fantome getFantome() {
         return fan;
     }
     public Pacman getEntite() {
         return pacman;
+=======
+    public Entite getEntite() {
+        return entite;
+>>>>>>> fc558fd1d2a1c736e0b99ee27c58588e7a145ebc
     }
     
     
