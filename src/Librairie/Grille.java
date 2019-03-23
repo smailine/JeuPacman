@@ -67,6 +67,7 @@ public class Grille {
         {23,1,3,6,9,12,15,18,21,24,26},
         {26,1,3,6,9,12,15,18,21,24,26},
         {29,1,12,15,16}};
+        numFantomes=4;
 
     }
 
@@ -101,6 +102,9 @@ public class Grille {
     score+=valeur;}
 
 
+
+   
+    
     public void setNumFantomes(int numFantomes){
         this.numFantomes=numFantomes;
     }

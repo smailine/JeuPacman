@@ -49,26 +49,26 @@ public class VueControleur extends Application {
     public void start(Stage primaryStage) {
         Jeu jeu = new Jeu();
 
-        
+
         int longueur = jeu.getGrille().getHorizontale();
         int largeur = jeu.getGrille().getVerticale();
-        
-        
+
+
 
         BorderPane border = new BorderPane();
 
         GridPane gPane = new GridPane();
-        
+
         Pane paneScore = new Pane();
 
-        
+
         /*Pane paneScore = new Pane();
         Label labelScore = new Label("Score");
         paneScore.getChildren().add(labelScore);
         Label scoreAffichage = new Label();
         paneScore.getChildren().add(scoreAffichage);*/
-        
-        
+
+
 
         int column = 0;
         int row = 0;
@@ -88,7 +88,7 @@ public class VueControleur extends Application {
         Image fantomeRose = new Image("File:images/fantome_rose.png");
 
         ImageView [][] imageViewTab = new ImageView[longueur][largeur];
-        
+
         for (int i = 0;i<longueur;i++) {
             for(int j = 0;j<largeur;j++){
 
@@ -98,15 +98,17 @@ public class VueControleur extends Application {
                 gPane.add(imageView,j, i);
 
             }
-            
+
             gPane.add(new Text("Score"), 33,3);
+            String score=""+jeu.getGrille().getScore();
+            gPane.add(new Text(score), 33,4);
         }
 
 
             jeu.addObserver(new Observer(){
             @Override
             public void update(Observable o, Object arg) {
-                
+
                 Grille grilleJeu = jeu.getGrille();
                 int tab[][] = grilleJeu.getTab();
 
@@ -121,27 +123,27 @@ public class VueControleur extends Application {
                         }else{
                             imageViewTab[i][j].setImage(sansMur);
                         }
-                        
 
-                        if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j){
+
+                        if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j /*&& jeu.getPacman().getNumVie()>0*/){
                             if(deplacement==Dir.b){
-                               imageViewTab[i][j].setImage(pacman_bas); 
+                               imageViewTab[i][j].setImage(pacman_bas);
                             }else if(deplacement==Dir.h){
-                               imageViewTab[i][j].setImage(pacman_haut); 
+                               imageViewTab[i][j].setImage(pacman_haut);
                             }else if(deplacement==Dir.g){
                                imageViewTab[i][j].setImage(pacman_gauche);
                             }else{
                                imageViewTab[i][j].setImage(pacman_droite);
                             }
-                            
-                        }else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j){
+
+                        }else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j && jeu.getFantome().getNumVie()>0 ){
                             imageViewTab[i][j].setImage(fantomeJaune);
                         }
-                        else if(jeu.getSuperFantome().getX() == i && jeu.getSuperFantome().getY() == j){
+                        else if(jeu.getSuperFantome().getX() == i && jeu.getSuperFantome().getY() == j && jeu.getSuperFantome().getNumVie()>0){
                             imageViewTab[i][j].setImage(fantomeBleu);
                         }
-                        
-                        
+
+
 
                     }
 
@@ -149,12 +151,12 @@ public class VueControleur extends Application {
                     * On regarde quelle pacgomme on mange, pour pouvoir mettre le score adéquate
                 */
 /*<<<<<<< HEAD
-                
+
                 if(grilleJeu.getTab()[jeu.getPacman().getX()][jeu.getPacman().getY()]==1){
                     jeu.getPacman().manger(1);
                     score = jeu.getGrille().getScore();
                     grilleJeu.getTab()[jeu.getPacman().getX()][jeu.getPacman().getY()]=2;
-                            
+
                 }else if (grilleJeu.getTab()[jeu.getPacman().getX()][jeu.getPacman().getY()]==3){
                     jeu.getPacman().manger(3);
                     score = jeu.getGrille().getScore();
@@ -162,24 +164,36 @@ public class VueControleur extends Application {
                 }
 
 */
-                
+
                 jeu.getPacman().deplacement(deplacement);
                 jeu.getFantome().run();
                 jeu.getSuperFantome().run();
-<<<<<<< HEAD
-                System.out.println(grilleJeu.getScore()+"\n\n\n\n");
-                System.out.println(grilleJeu.toString()+"\n\n\n\n");
-=======
+                
+                if(jeu.getFantome().getX()==jeu.getFantome().getX() && jeu.getFantome().getY()==jeu.getFantome().getY() ){
+                    jeu.getPacman().manger(jeu.getFantome());
+                     jeu.getFantome().manger(jeu.getPacman());
+                }
+                if(jeu.getSuperFantome().getX()==jeu.getSuperFantome().getX() && jeu.getSuperFantome().getY()==jeu.getSuperFantome().getY() ){
+                    jeu.getPacman().manger(jeu.getSuperFantome());
+                    jeu.getSuperFantome().manger(jeu.getPacman());
+                }
                 /**
                 * On convertit le score en String pour pouvoir le l'afficher via scoreAffichage
                 */
                 //scoreAffichage.setText(String.valueOf(score));
->>>>>>> fdb82b425ca7f0e105ed41d210a89e6eb86d412b
+                 
             }
             });
-            
-            
-            
+
+
+            /*String score=""+jeu.getGrille().getScore();
+                    gPane.add(new Text(score), 33,3);
+                 for(int i=0; i<jeu.getPacman().getNumVie(); i++)
+                 {
+                     ImageView image1=new ImageView();
+                     image1.setImage(pacman_bas);
+                     gPane.add(image1, 37, 27+i);
+                 }*/
 
         gPane.setGridLinesVisible(false);
 
@@ -208,7 +222,7 @@ public class VueControleur extends Application {
                     break;
             }
         }
-           
+
     });
         primaryStage.setFullScreen(true);
         primaryStage.setTitle("Jeu Pacman");
