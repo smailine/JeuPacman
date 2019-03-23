@@ -2,7 +2,7 @@
 <jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="JeuPacman.jnlp">
   <information>
     <title>JeuPacman</title>
-    <vendor>Smaïline</vendor>
+    <vendor>Smaï¿½line</vendor>
     <description>null</description>
     <offline-allowed/>
   </information>

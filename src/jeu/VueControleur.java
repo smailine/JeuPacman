@@ -40,27 +40,27 @@ import jeu.Jeu;
  */
 public class VueControleur extends Application {
     Dir deplacement = Dir.d;
-   
+
     @Override
     public void start(Stage primaryStage) {
         Jeu jeu = new Jeu();
-        
-       
+
+
         int longueur = jeu.getGrille().getHorizontale();
         int largeur = jeu.getGrille().getVerticale();
-      
-        
+
+
         BorderPane border = new BorderPane();
-        
+
         GridPane gPane = new GridPane();
-        
+
         int column = 0;
         int row = 0;
         int [][] grille = jeu.getGrille().getTab();
         Image image = new Image("File:images/mur.png");
-        
+
         Image sansMur = new Image("File:images/sansMur.png");
-        
+
         Image pacman = new Image("File:images/pacman.png");
         Image pacgum = new Image("File:images/Pacgum.png");
         Image superpacgum = new Image("File:images/SuperPacgum.png");
@@ -68,24 +68,24 @@ public class VueControleur extends Application {
         ImageView [][] imageViewTab = new ImageView[longueur][largeur];
         for (int i = 0;i<longueur;i++) {
             for(int j = 0;j<largeur;j++){
-               
+
                 ImageView imageView = new ImageView();
-                
+
                 imageViewTab[i][j] = imageView;
                 gPane.add(imageView,j, i);
-            
+
             }
-        
+
         }
-        
-           
+
+
             jeu.addObserver(new Observer(){
             @Override
             public void update(Observable o, Object arg) {
-                
+
                 Grille grilleJeu = jeu.getGrille();
                 int tab[][] = grilleJeu.getTab();
-                
+
                 for(int i = 0;i<grilleJeu.getHorizontale();i++){
                     for(int j = 0;j<grilleJeu.getVerticale();j++){
                         if(tab[i][j]==0){
@@ -97,7 +97,7 @@ public class VueControleur extends Application {
                         }else{
                             imageViewTab[i][j].setImage(sansMur);
                         }
-                       
+
                         if(jeu.getEntite().getX() == i && jeu.getEntite().getY() == j){
                             imageViewTab[i][j].setImage(pacman);
                         }
@@ -105,16 +105,16 @@ public class VueControleur extends Application {
                     }
 
                 }
-                
+
                 jeu.getEntite().deplacement(deplacement);
             }
             });
-            
+
 
         gPane.setGridLinesVisible(true);
-        
+
         border.setCenter(gPane);
-        
+
         Scene scene = new Scene(border, Color.LIGHTBLUE);
         /**
          * Ici nous avons les event permettant de gérer les déplacements à l'aide du clavier
@@ -123,7 +123,7 @@ public class VueControleur extends Application {
             @Override
             public void handle(KeyEvent event) {
                 switch(event.getCode()){
-                case UP: 
+                case UP:
                     deplacement = Dir.h;
                     break;
                 case DOWN:
@@ -141,9 +141,9 @@ public class VueControleur extends Application {
         primaryStage.setTitle("Jeu Pacman");
         primaryStage.setScene(scene);
         primaryStage.show();
-        
+
         new Thread(jeu).start();
-        
+
     }
 
     /**
@@ -152,5 +152,5 @@ public class VueControleur extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }
