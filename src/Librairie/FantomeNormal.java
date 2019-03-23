@@ -17,7 +17,7 @@ public class FantomeNormal extends Fantome {
         super(x,y,grille);
     }
     
-    /*public Dir choisirDirection(){
+   /* public Dir choisirDirection(){
         Dir direction = null;
      
         for (int j=0; j<grille.getCroisement().length-1;j++)
@@ -25,25 +25,12 @@ public class FantomeNormal extends Fantome {
                 for(int k=1; k<grille.getCroisement()[j].length-1;k++)
                 {
                     if (grille.getCroisement()[j][k]==y){
+                        if
+                    }
                     }
                 }
-            }
-        switch(i){
-            case 0:
-                direction=Dir.b;
-                break;
-            case 1:
-                direction=Dir.g;
-                break;
-            case 2:
-                direction=Dir.h;
-                break;
-            case 3:
-                direction=Dir.d;
-                break;
-        }            
-        return direction;       
-    }    a finir */
+            }*/
+       
  
               
   
