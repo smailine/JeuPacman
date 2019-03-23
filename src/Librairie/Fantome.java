@@ -9,7 +9,7 @@ package Librairie;
  *
  * @author cardo
  */
-public class Fantome extends Entite{
+public class Fantome extends Entite implements Runnable{
     protected int numVie;
     protected boolean modeTueur;
     public Fantome(int x, int y, Grille grille) {
@@ -50,6 +50,11 @@ public class Fantome extends Entite{
        if(pac.getModeTueur()==false)
             pac.perdreVie();
    }
+
+    @Override
+    public void run() {
+        this.deplacement(Dir.d);
+    }
     
     
 }
