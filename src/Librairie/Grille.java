@@ -7,7 +7,7 @@ package Librairie;
 
 /**
  *
- * @author p1506559
+ * @author cardo
  */
 public class Grille {
      private int tab[][];

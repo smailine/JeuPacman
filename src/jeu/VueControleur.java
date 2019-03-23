@@ -62,8 +62,8 @@ public class VueControleur extends Application {
         Image sansMur = new Image("File:images/sansMur.png");
         
         Image pacman = new Image("File:images/pacman.png");
-        
- 
+        Image pacgum = new Image("File:images/Pacgum.png");
+        Image superpacgum = new Image("File:images/SuperPacgum.png");
 
         ImageView [][] imageViewTab = new ImageView[longueur][largeur];
         for (int i = 0;i<longueur;i++) {
@@ -85,12 +85,15 @@ public class VueControleur extends Application {
                 
                 Grille grilleJeu = jeu.getGrille();
                 int tab[][] = grilleJeu.getTab();
-                System.out.println(grilleJeu.getVerticale()+"      "+grilleJeu.getHorizontale());
+                
                 for(int i = 0;i<grilleJeu.getHorizontale();i++){
                     for(int j = 0;j<grilleJeu.getVerticale();j++){
                         if(tab[i][j]==0){
-                            
                             imageViewTab[i][j].setImage(image);
+                        }else if(tab[i][j]==3){
+                            imageViewTab[i][j].setImage(superpacgum);
+                        }else if(tab[i][j]==1){
+                            imageViewTab[i][j].setImage(pacgum);
                         }else{
                             imageViewTab[i][j].setImage(sansMur);
                         }
