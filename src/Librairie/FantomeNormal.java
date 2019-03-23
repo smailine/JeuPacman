@@ -1,46 +1,3 @@
-<<<<<<< HEAD
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Librairie;
-
-
-import java.util.Scanner;
-
-/**
- *
- * @author cardo
- */
-public class FantomeNormal extends Fantome {
- 
-    public FantomeNormal(int x, int y, Grille grille) {
-        super(x,y,grille);
-    }
-    
-   /* public Dir choisirDirection(){
-        Dir direction = null;
-        String deplacement=this.derniereDirection.toString();
-     
-        for (int j=0; j<grille.getCroisement().length-1;j++)
-            if(grille.getCroisement()[j][0]==x){
-                for(int k=1; k<grille.getCroisement()[j].length-1;k++)
-                {
-                    if (grille.getCroisement()[j][k]==y){
-                        if(grille.getTab()[j][k+1]!=0){
-                        deplacement+=d;}
-                    }
-                    }
-                }
-            }
-       */
- 
-              
-  
-}
-
-=======
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -55,14 +12,14 @@ import java.util.Scanner;
  * @author cardo
  */
 public class FantomeNormal extends Fantome {
- 
+
     public FantomeNormal(int x, int y, Grille grille) {
         super(x,y,grille);
     }
-    
+
     /*public Dir choisirDirection(){
         Dir direction = null;
-     
+
         for (int j=0; j<grille.getCroisement().length-1;j++)
             if(grille.getCroisement()[j][0]==x){
                 for(int k=1; k<grille.getCroisement()[j].length-1;k++)
@@ -84,10 +41,10 @@ public class FantomeNormal extends Fantome {
             case 3:
                 direction=Dir.d;
                 break;
-        }            
-        return direction;       
+        }
+        return direction;
     }    a finir */
- 
+
     @Override
     public void run() {
         int nombreChoisi = 1 + (int) (Math.random()*((4 - 1)+1));
@@ -100,9 +57,7 @@ public class FantomeNormal extends Fantome {
         }else{
             this.deplacement(Dir.b);
         }
-        
-    }        
-  
-}
 
->>>>>>> 7c3ebb223fb1a37f8d37ee549b5470da55ee932b
+    }
+
+}
