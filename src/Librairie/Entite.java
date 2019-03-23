@@ -33,7 +33,7 @@ public class Entite {
         switch(deplacement){
             case h:
                 if(this.getX()-1>=0){
-                    if(tab[x-1][y]==1){
+                    if(tab[x-1][y]==0){
                         rencontreMur = true;
                     }else{
                         this.setX(x-1);

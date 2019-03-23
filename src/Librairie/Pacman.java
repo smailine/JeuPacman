@@ -18,7 +18,7 @@ public class Pacman extends Entite{
     private boolean modeTueur;
     
     public Pacman(Grille grille) {
-        super(10,16,grille);
+        super(5,2,grille);
         numVie=3;
         modeTueur=false;
     }
