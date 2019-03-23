@@ -36,7 +36,7 @@ import jeu.Jeu;
 
 /**
  *
- * @author freder
+ *
  */
 public class VueControleur extends Application {
     Dir deplacement = Dir.d;
