@@ -5,6 +5,7 @@
  */
 package Librairie;
 
+
 import java.util.Scanner;
 
 /**
@@ -19,18 +20,20 @@ public class FantomeNormal extends Fantome {
     
    /* public Dir choisirDirection(){
         Dir direction = null;
+        String deplacement=this.derniereDirection.toString();
      
         for (int j=0; j<grille.getCroisement().length-1;j++)
             if(grille.getCroisement()[j][0]==x){
                 for(int k=1; k<grille.getCroisement()[j].length-1;k++)
                 {
                     if (grille.getCroisement()[j][k]==y){
-                        if
+                        if(grille.getTab()[j][k+1]!=0){
+                        deplacement+=d;}
                     }
                     }
                 }
-            }*/
-       
+            }
+       */
  
               
   

@@ -13,11 +13,13 @@ public class Entite {
     protected int x,y;
     protected Grille grille;
     protected boolean modeTueur=false;
+    protected Dir derniereDirection;
 
     public Entite(Grille grille){
         this.x = 0;
         this.y = 0;
         this.grille = grille;
+        derniereDirection=null;
     }
 
      public Entite(int x, int y, Grille grille){
@@ -37,6 +39,7 @@ public class Entite {
                         rencontreMur = true;
                     }else{
                         this.setX(x-1);
+                        derniereDirection=Dir.h;
                         rencontreMur = false;
                     }
                 }
@@ -48,6 +51,7 @@ public class Entite {
                     }else{
                         this.setX(x+1);
                         rencontreMur = false;
+                        derniereDirection=Dir.b;
                     }
                 }
             break;
@@ -59,6 +63,7 @@ public class Entite {
                     }else{
                         this.setY(y+1);
                         rencontreMur = false;
+                        derniereDirection=Dir.d;
                     }
                 }
             break;
@@ -70,6 +75,7 @@ public class Entite {
                     }else{
                         this.setY(y-1);
                         rencontreMur = false;
+                        derniereDirection=Dir.g;
                     }
                 }
             break;
@@ -79,6 +85,7 @@ public class Entite {
         return rencontreMur;
     }
 
+    public Dir getDerniereDirection(){return derniereDirection;}
     public int getX(){
         return this.x;
     }
