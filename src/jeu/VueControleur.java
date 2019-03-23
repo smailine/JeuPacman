@@ -58,14 +58,16 @@ public class VueControleur extends Application {
         BorderPane border = new BorderPane();
 
         GridPane gPane = new GridPane();
+
         
-        Pane paneScore = new Pane();
+        /*Pane paneScore = new Pane();
         Label labelScore = new Label("Score");
         paneScore.getChildren().add(labelScore);
         Label scoreAffichage = new Label();
-        paneScore.getChildren().add(scoreAffichage);
+        paneScore.getChildren().add(scoreAffichage);*/
         
         
+
         int column = 0;
         int row = 0;
         int [][] grille = jeu.getGrille().getTab();
@@ -94,7 +96,8 @@ public class VueControleur extends Application {
                 gPane.add(imageView,j, i);
 
             }
-
+            
+            gPane.add(new Text("Score"), 33,3);
         }
 
 
@@ -140,10 +143,11 @@ public class VueControleur extends Application {
 
                     }
 
-                }
-                /**
+                }/**
                     * On regarde quelle pacgomme on mange, pour pouvoir mettre le score adéquate
                 */
+/*<<<<<<< HEAD
+                
                 if(grilleJeu.getTab()[jeu.getPacman().getX()][jeu.getPacman().getY()]==1){
                     jeu.getPacman().manger(1);
                     score = jeu.getGrille().getScore();
@@ -155,13 +159,15 @@ public class VueControleur extends Application {
                     grilleJeu.getTab()[jeu.getPacman().getX()][jeu.getPacman().getY()]=2;
                 }
 
+*/
+                
                 jeu.getPacman().deplacement(deplacement);
                 jeu.getFantome().run();
                 jeu.getSuperFantome().run();
                 /**
                 * On convertit le score en String pour pouvoir le l'afficher via scoreAffichage
                 */
-                scoreAffichage.setText(String.valueOf(score));
+                //scoreAffichage.setText(String.valueOf(score));
             }
             });
             
@@ -171,7 +177,7 @@ public class VueControleur extends Application {
         gPane.setGridLinesVisible(false);
 
         border.setCenter(gPane);
-        border.setRight(paneScore);
+       // border.setRight(paneScore);
 
         Scene scene = new Scene(border, Color.LIGHTBLUE);
         /**
