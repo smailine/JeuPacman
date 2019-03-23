@@ -27,6 +27,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -55,6 +56,8 @@ public class VueControleur extends Application {
         BorderPane border = new BorderPane();
 
         GridPane gPane = new GridPane();
+        
+        Pane paneScore = new Pane();
 
         int column = 0;
         int row = 0;
@@ -122,6 +125,8 @@ public class VueControleur extends Application {
                 jeu.getPacman().deplacement(deplacement);
                 jeu.getFantome().run();
                 jeu.getSuperFantome().run();
+                System.out.println(grilleJeu.getScore()+"\n\n\n\n");
+                System.out.println(grilleJeu.toString()+"\n\n\n\n");
             }
             });
 
@@ -152,7 +157,9 @@ public class VueControleur extends Application {
                     break;
             }
         }
+           
     });
+        primaryStage.setFullScreen(true);
         primaryStage.setTitle("Jeu Pacman");
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -113,12 +113,28 @@ public class Grille {
     public int getNumFantomes(){
         return numFantomes;
     }
-    
+
     public int getValeur(int x, int y){
         int valeur=0;
         if(tab[x][y]==1){valeur=10;}
         else if(tab[x][y]==3){valeur=100;}
         return valeur;
     }
+    public int getElement(int x, int y){return tab[x][y];}
     public void setValeur(int x, int y, int valeur){tab[x][y]=valeur;}
+    
+     @Override
+    public String toString(){
+        String a="";
+        for(int i=0; i<tab.length;i++){
+            a+="    ";
+            
+        for(int j=0; j<tab[0].length;j++)
+        {
+            a+=tab[i][j]+"  ";
+        }
+        a+="   \n";
+            }
+        return a;
+    }
 }

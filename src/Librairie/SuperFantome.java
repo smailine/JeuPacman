@@ -25,44 +25,36 @@ public class SuperFantome extends Fantome{
     }
     @Override
     public void run(){
-        Dir d=this.getDerniereDirection();
         for (int j=0; j<grille.getCroisement().length-1;j++){
             if(grille.getCroisement()[j][0]==x){
                 for(int k=1; k<grille.getCroisement()[j].length-1;k++)
                 {
                     if (grille.getCroisement()[j][k]==y){
-                        if(grille.getTab()[j][k]<80){
-                            if(grille.getTab()[x+1][y]>grille.getTab()[x-1][y] && grille.getTab()[x+1][y]>grille.getTab()[x][y+1]
-                                    && grille.getTab()[x+1][y]>grille.getTab()[y][y-1])
-                                    d=Dir.b;
-                            else if(grille.getTab()[x-1][y]>grille.getTab()[x+1][y] && grille.getTab()[x-1][y]>grille.getTab()[x][y+1]
+                       if(grille.getTab()[j][k]>80){
+                            if(grille.getTab()[x+1][y]>=grille.getTab()[x-1][y] && grille.getTab()[x+1][y]>=grille.getTab()[x][y+1]
+                                    && grille.getTab()[x+1][y]>=grille.getTab()[y][y-1]){
+                                    derniereDirection=Dir.b;
+                                    this.deplacement(derniereDirection);}
+                            else if(grille.getTab()[x-1][y]>=grille.getTab()[x+1][y] && grille.getTab()[x-1][y]>=grille.getTab()[x][y+1]
                                     && grille.getTab()[x-1][y]>grille.getTab()[x][y-1])
                             {
-                                d=Dir.h;
-                                this.deplacement(d);}
-                            else if(grille.getTab()[x][y+1]>grille.getTab()[x+1][y] && grille.getTab()[x][y+1]>grille.getTab()[x-1][y]
-                                    && grille.getTab()[x][y+1]>grille.getTab()[x][y-1]){
-                                    d=Dir.h;
-                                    this.deplacement(d);}
-                            else if(grille.getTab()[x][y-1]>grille.getTab()[x+1][y] && grille.getTab()[x][y-1]>grille.getTab()[x][y+1]
-                                    && grille.getTab()[x][y-1]>grille.getTab()[x-1][y]){
-                                    d=Dir.h;
-                                    this.deplacement(d);}
-                             }else {
-                                int nombreChoisi = 1 + (int) (Math.random()*((4 - 1)+1));
-                                if(nombreChoisi == 1){
-                                    this.deplacement(Dir.d);
-                                }else if(nombreChoisi == 2){
-                                    this.deplacement(Dir.g);
-                                }else if(nombreChoisi == 3){
-                                    this.deplacement(Dir.h);
-                                }else{
-                                       this.deplacement(Dir.b);
-                                }
+                                derniereDirection=Dir.h;
+                                this.deplacement(derniereDirection);}
+                            else if(grille.getTab()[x][y+1]>=grille.getTab()[x+1][y] && grille.getTab()[x][y+1]>=grille.getTab()[x-1][y]
+                                    && grille.getTab()[x][y+1]>=grille.getTab()[x][y-1]){
+                                    derniereDirection=Dir.h;
+                                    this.deplacement(derniereDirection);}
+                            else if(grille.getTab()[x][y-1]>=grille.getTab()[x+1][y] && grille.getTab()[x][y-1]>=grille.getTab()[x][y+1]
+                                    && grille.getTab()[x][y-1]>=grille.getTab()[x-1][y]){
+                                    derniereDirection=Dir.h;
+                                    this.deplacement(derniereDirection);}
+                            
                             }
                         }
                     }
-                }else{
+                }
+             
+                else{
                     int nombreChoisi = 1 + (int) (Math.random()*((4 - 1)+1));
                     if(nombreChoisi == 1){
                         this.deplacement(Dir.d);
@@ -72,10 +64,9 @@ public class SuperFantome extends Fantome{
                         this.deplacement(Dir.h);
                     }else{
                            this.deplacement(Dir.b);
-                    }
-            }
+                }
             }
         }
-    
-    
+            
+    }
 }

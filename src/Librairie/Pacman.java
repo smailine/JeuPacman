@@ -40,7 +40,7 @@ public class Pacman extends Entite{
 
 
     public void manger(int pacgum){
-        if(pacgum==0){
+        if(pacgum==1){
             grille.setScore(grille.getScore()+10);}
         else if(pacgum==3){
             grille.setScore(grille.getScore()+100);
@@ -69,8 +69,12 @@ public class Pacman extends Entite{
         for(int i = 0;i<grille.getHorizontale();i++){
           for(int j = 0;j<grille.getVerticale();j++){
               if(grille.getTab()[i][j]>3){
-                  grille.setValeur(x,y,grille.getValeur(x, y)-4);
+                 
+                  grille.setValeur(i,j,grille.getElement(i, j)-4);
+                  
               }
+              else{
+              grille.setValeur(x,y,2);}
           }
         }// mise à jour des feremones
         System.out.println(deplacement);
@@ -86,7 +90,7 @@ public class Pacman extends Entite{
                         derniereDirection=Dir.h;
                         rencontreMur = false;
                         grille.setScore(grille.getValeur(x, y));
-                        grille.setValeur(x, y, 104);
+                        grille.setValeur(x, y, 4002);
                     }
                 }
             break;
@@ -99,7 +103,7 @@ public class Pacman extends Entite{
                         rencontreMur = false;
                         derniereDirection=Dir.b;
                         grille.setScore(grille.getValeur(x, y));
-                        grille.setValeur(x, y, 104);
+                        grille.setValeur(x, y, 4002);
                     }
                 }
             break;
@@ -113,7 +117,7 @@ public class Pacman extends Entite{
                         rencontreMur = false;
                         derniereDirection=Dir.d;
                         grille.setScore(grille.getValeur(x, y));
-                        grille.setValeur(x, y, 104);
+                        grille.setValeur(x, y, 4002);
                     }
                 }
             break;
