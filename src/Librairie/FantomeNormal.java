@@ -45,7 +45,20 @@ public class FantomeNormal extends Fantome {
         return direction;       
     }    a finir */
  
-              
+    @Override
+    public void run() {
+        int nombreChoisi = 1 + (int) (Math.random()*((4 - 1)+1));
+        if(nombreChoisi == 1){
+            this.deplacement(Dir.d);
+        }else if(nombreChoisi == 2){
+            this.deplacement(Dir.g);
+        }else if(nombreChoisi == 3){
+            this.deplacement(Dir.h);
+        }else{
+            this.deplacement(Dir.b);
+        }
+        
+    }        
   
 }
 

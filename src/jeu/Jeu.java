@@ -28,7 +28,7 @@ public class Jeu extends Observable implements Runnable{
     public Jeu(){
        this.grille  = new Grille();
        this.pacman= new Pacman(grille);
-       this.fan=new FantomeNormal(12,16,grille);
+       this.fan=new FantomeNormal(14,2,grille);
     }
 
     public Grille getGrille() {
@@ -73,6 +73,7 @@ public class Jeu extends Observable implements Runnable{
         Console c = new Console(j);
         j.addObserver(c);
         new Thread(j).start();
+        
     }
 
 }

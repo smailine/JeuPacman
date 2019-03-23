@@ -7,6 +7,7 @@
 package jeu;
 
 import Librairie.Dir;
+import Librairie.FantomeNormal;
 import Librairie.Grille;
 import java.util.Observable;
 import java.util.Observer;
@@ -48,7 +49,8 @@ public class VueControleur extends Application {
 
         int longueur = jeu.getGrille().getHorizontale();
         int largeur = jeu.getGrille().getVerticale();
-
+        
+        
 
         BorderPane border = new BorderPane();
 
@@ -64,8 +66,12 @@ public class VueControleur extends Application {
         Image pacman = new Image("File:images/pacman.png");
         Image pacgum = new Image("File:images/pac_gomme.png");
         Image superpacgum = new Image("File:images/SuperPacgum.png");
+        Image fantomeJaune = new Image("File:images/fantome_jaune.png");
+        Image fantomeBleu = new Image("File:images/fantome_bleu.png");
+        Image fantomeRose = new Image("File:images/fantome_rose.png");
 
         ImageView [][] imageViewTab = new ImageView[longueur][largeur];
+        
         for (int i = 0;i<longueur;i++) {
             for(int j = 0;j<largeur;j++){
 
@@ -97,9 +103,12 @@ public class VueControleur extends Application {
                         }else{
                             imageViewTab[i][j].setImage(sansMur);
                         }
+                        
 
                         if(jeu.getEntite().getX() == i && jeu.getEntite().getY() == j){
                             imageViewTab[i][j].setImage(pacman);
+                        }else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j){
+                            imageViewTab[i][j].setImage(fantomeJaune);
                         }
 
                     }
@@ -107,6 +116,7 @@ public class VueControleur extends Application {
                 }
 
                 jeu.getEntite().deplacement(deplacement);
+                jeu.getFantome().run();
             }
             });
 
@@ -143,6 +153,7 @@ public class VueControleur extends Application {
         primaryStage.show();
 
         new Thread(jeu).start();
+        new Thread(jeu.getFantome()).start();
 
     }
 
