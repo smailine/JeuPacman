@@ -105,18 +105,22 @@ public class VueControleur extends Application {
                         }
                         
 
-                        if(jeu.getEntite().getX() == i && jeu.getEntite().getY() == j){
+                        if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j){
                             imageViewTab[i][j].setImage(pacman);
                         }else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j){
                             imageViewTab[i][j].setImage(fantomeJaune);
+                        }
+                        else if(jeu.getSuperFantome().getX() == i && jeu.getSuperFantome().getY() == j){
+                            imageViewTab[i][j].setImage(fantomeBleu);
                         }
 
                     }
 
                 }
 
-                jeu.getEntite().deplacement(deplacement);
+                jeu.getPacman().deplacement(deplacement);
                 jeu.getFantome().run();
+                jeu.getSuperFantome().run();
             }
             });
 
@@ -154,6 +158,7 @@ public class VueControleur extends Application {
 
         new Thread(jeu).start();
         new Thread(jeu.getFantome()).start();
+        new Thread(jeu.getSuperFantome()).start();
 
     }
 

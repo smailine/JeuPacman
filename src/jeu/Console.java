@@ -36,7 +36,7 @@ public class Console implements Observer{
         int tab[][] = grille.getTab();
         for(int i = 0;i<grille.getHorizontale();i++){
             for(int j = 0;j<grille.getVerticale();j++){
-                if(this.jeu.getEntite().getX() == i && this.jeu.getEntite().getY() == j){
+                if(this.jeu.getPacman().getX() == i && this.jeu.getPacman().getY() == j){
                     System.out.print(" "+"O");
                 }else{
                     System.out.print(" "+tab[i][j]);
@@ -48,6 +48,6 @@ public class Console implements Observer{
             System.out.print(" \n");
         }
         System.out.println("   ");
-        this.jeu.getEntite().deplacement(Dir.b);
+        this.jeu.getPacman().deplacement(Dir.b);
     }
 }
