@@ -81,7 +81,8 @@ public class VueControleur extends Application {
                 gPane.add(imageView,j, i);
 
             }
-
+            
+            gPane.add(new Text("Score"), 33,3);
         }
 
 
@@ -117,7 +118,7 @@ public class VueControleur extends Application {
                     }
 
                 }
-
+                
                 jeu.getPacman().deplacement(deplacement);
                 jeu.getFantome().run();
                 jeu.getSuperFantome().run();

@@ -113,5 +113,12 @@ public class Grille {
     public int getNumFantomes(){
         return numFantomes;
     }
-
+    
+    public int getValeur(int x, int y){
+        int valeur=0;
+        if(tab[x][y]==1){valeur=10;}
+        else if(tab[x][y]==3){valeur=100;}
+        return valeur;
+    }
+    public void setValeur(int x, int y, int valeur){tab[x][y]=valeur;}
 }

@@ -63,4 +63,77 @@ public class Pacman extends Entite{
     public int getNumVie()
     {return numVie;}
 
+
+
+  public boolean deplacement(Dir deplacement){
+        for(int i = 0;i<grille.getHorizontale();i++){
+          for(int j = 0;j<grille.getVerticale();j++){
+              if(grille.getTab()[i][j]>3){
+                  grille.setValeur(x,y,grille.getValeur(x, y)-4);
+              }
+          }
+        }// mise à jour des feremones
+        System.out.println(deplacement);
+        boolean rencontreMur = false;
+        int tab[][] = this.grille.getTab();
+        switch(deplacement){
+            case h:
+                if(this.getX()-1>=0){
+                    if(tab[x-1][y]==0){
+                        rencontreMur = true;
+                    }else{
+                        this.setX(x-1);
+                        derniereDirection=Dir.h;
+                        rencontreMur = false;
+                        grille.setScore(grille.getValeur(x, y));
+                        grille.setValeur(x, y, 104);
+                    }
+                }
+            break;
+            case b:
+                if(this.getX()+1<this.grille.getVerticale()){
+                   if(tab[x+1][y]==0){
+                        rencontreMur = true;
+                    }else{
+                        this.setX(x+1);
+                        rencontreMur = false;
+                        derniereDirection=Dir.b;
+                        grille.setScore(grille.getValeur(x, y));
+                        grille.setValeur(x, y, 104);
+                    }
+                }
+            break;
+
+            case d:
+                if(this.getY()+1<this.grille.getHorizontale()){
+                    if(tab[x][y+1]==0){
+                        rencontreMur = true;
+                    }else{
+                        this.setY(y+1);
+                        rencontreMur = false;
+                        derniereDirection=Dir.d;
+                        grille.setScore(grille.getValeur(x, y));
+                        grille.setValeur(x, y, 104);
+                    }
+                }
+            break;
+
+            case g:
+                if(this.getY()-1>=0){
+                   if(tab[x][y-1]==0){
+                        rencontreMur = true;
+                    }else{
+                        this.setY(y-1);
+                        rencontreMur = false;
+                        derniereDirection=Dir.g;
+                        grille.setScore(grille.getValeur(x, y));
+                        grille.setValeur(x, y, 4002);
+                    }
+                }
+            break;
+
+        }
+
+        return rencontreMur;
+    }
 }
