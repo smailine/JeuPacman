@@ -21,8 +21,6 @@ public class Grille {
 
      @SuppressWarnings("empty-statement")
     public Grille(){
-        horizontale=28;
-        verticale=30;
         tab= new int [][]{
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,3,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1,1,1,1,1,1,1,1,1,1,3,0},
@@ -56,6 +54,8 @@ public class Grille {
             {0,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
         };
+         horizontale=tab.length;
+         verticale=tab[0].length;
         // contient les croisement la ligne correspondant dans la grille croissement[i][0] et le reste pour les colones
         croisement=new int[][]{{1,1,6,12,15,21,26},
         {5,1,6,9,12,15,21,26},

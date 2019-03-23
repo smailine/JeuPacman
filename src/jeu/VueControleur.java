@@ -85,6 +85,7 @@ public class VueControleur extends Application {
                 
                 Grille grilleJeu = jeu.getGrille();
                 int tab[][] = grilleJeu.getTab();
+                System.out.println(grilleJeu.getVerticale()+"      "+grilleJeu.getHorizontale());
                 for(int i = 0;i<grilleJeu.getHorizontale();i++){
                     for(int j = 0;j<grilleJeu.getVerticale();j++){
                         if(tab[i][j]==0){
