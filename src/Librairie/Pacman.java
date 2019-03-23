@@ -40,8 +40,10 @@ public class Pacman extends Entite{
 
 
     public void manger(int pacgum){
-        if(pacgum==0){
-            grille.setScore(grille.getScore()+10);}
+        if(pacgum==1){
+            grille.setScore(grille.getScore()+10);
+            
+        }
         else if(pacgum==3){
             grille.setScore(grille.getScore()+100);
            changeMode();
