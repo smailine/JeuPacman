@@ -62,7 +62,7 @@ public class VueControleur extends Application {
         Image sansMur = new Image("File:images/sansMur.png");
 
         Image pacman = new Image("File:images/pacman.png");
-        Image pacgum = new Image("File:images/Pacgum.png");
+        Image pacgum = new Image("File:images/pac_gomme.png");
         Image superpacgum = new Image("File:images/SuperPacgum.png");
 
         ImageView [][] imageViewTab = new ImageView[longueur][largeur];
