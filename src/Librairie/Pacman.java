@@ -45,14 +45,16 @@ public class Pacman extends Entite{
   
     
     public void manger(Fantome f){
-    f.setNumVie(f.getNumVie()-1);}
+        if(f.getNumVie()>0 && this.getModeTueur()==true)
+            f.setNumVie(f.getNumVie()-1);
+    }
   
     
     public void perdreVie(){
         if(numVie>0)
             numVie-=1;
     }
-    
+    public boolean getModeTueur(){return modeTueur;}
     public int getNumVie()
     {return numVie;}
     

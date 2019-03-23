@@ -47,7 +47,8 @@ public class Fantome extends Entite{
    }
     
    public void manger(Pacman pac){
-       pac.perdreVie();
+       if(pac.getModeTueur()==false)
+            pac.perdreVie();
    }
     
     

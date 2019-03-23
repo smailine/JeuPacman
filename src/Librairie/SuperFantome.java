@@ -15,5 +15,11 @@ public class SuperFantome extends Fantome{
         super(x,y,grille);
     }
     
+    public static void main(String[] args ){
+        Fantome a=new Fantome(14,16,new Grille());
+        Pacman b=new Pacman(new Grille());
+        b.manger(a);
+        System.out.println(a.getNumVie());
+    }
     
 }
