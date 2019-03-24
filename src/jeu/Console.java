@@ -49,5 +49,6 @@ public class Console implements Observer{
         }
         System.out.println("   ");
         this.jeu.getPacman().deplacement(Dir.b);
+       
     }
 }

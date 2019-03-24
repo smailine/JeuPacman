@@ -49,204 +49,177 @@ import jeu.Jeu;
  * @author freder
  */
 public class VueControleur extends Application {
-    Dir deplacement = Dir.d;
-    int score = 0;
+    Dir deplacement = Dir.h;
+    TextFlow scoreTex = new TextFlow(); ;
     @Override
     public void start(Stage primaryStage) {
-        try {
-            Jeu jeu = new Jeu();
-            
-            
-            int longueur = jeu.getGrille().getHorizontale();
-            int largeur = jeu.getGrille().getVerticale();
-            
-            
-            
-            BorderPane border = new BorderPane();
-            
-            GridPane gPane = new GridPane();
-            
-            VBox infoJeu = new VBox();
-            HBox hb1 = new HBox();
-            HBox hb2 = new HBox();
-            TextFlow paneScore = new TextFlow();
-            paneScore.setPrefSize(600, 300); 
-            paneScore.setTextAlignment(TextAlignment.CENTER);
-            Label labelScore = new Label("Score : ");
-            labelScore.setFont(new Font(30));
-            Label labelVie = new Label("Vie : ");
-            labelVie.setFont(new Font(30));
-            Text scoreAffichage = new Text();
-            scoreAffichage.setFont(new Font(30));
-            Text vieAffichage = new Text();
-            vieAffichage.setFont(new Font(30));
-            
-            int column = 0;
-            int row = 0;
-            int [][] grille = jeu.getGrille().getTab();
-            Image image = new Image("File:images/mur.png");
-            
-            Image sansMur = new Image("File:images/sansMur.png");
-            
-            Image pacman_bas = new Image("File:images/pacman_bas.png");
-            Image pacman_haut = new Image("File:images/pacman_haut.png");
-            Image pacman_gauche = new Image("File:images/pacman_gauche.png");
-            Image pacman_droite = new Image("File:images/pacman_droite.png");
-            Image pacgum = new Image("File:images/pac_gomme.png");
-            Image superpacgum = new Image("File:images/SuperPacgum.png");
-            Image fantomeJaune = new Image("File:images/fantome_jaune.png");
-            Image fantomeBleu = new Image("File:images/fantome_bleu.png");
-            Image fantomeRose = new Image("File:images/fantome_rose.png");
-            
-            ImageView [][] imageViewTab = new ImageView[longueur][largeur];
-            
-            for (int i = 0;i<longueur;i++) {
-                for(int j = 0;j<largeur;j++){
-                    
-                    ImageView imageView = new ImageView();
-                    
-                    imageViewTab[i][j] = imageView;
-                    gPane.add(imageView,j, i);
-                    
-                }
-                
-                //gPane.add(new Text("Score"), 33,3);
+
+        Jeu jeu = new Jeu();
+
+
+        int longueur = jeu.getGrille().getHorizontale();
+        int largeur = jeu.getGrille().getVerticale();
+
+
+
+        BorderPane border = new BorderPane();
+
+        GridPane gPane = new GridPane();
+
+        Pane paneScore = new Pane();
+        Text scoreV=new Text(""+jeu.getGrille().getScore());
+        Text scoret = new Text("Score");
+        TextFlow score = new TextFlow(scoret, scoreV);
+
+
+        /*Pane paneScore = new Pane();
+        Label labelScore = new Label("Score");
+        paneScore.getChildren().add(labelScore);
+        Label scoreAffichage = new Label();
+        paneScore.getChildren().add(scoreAffichage);*/
+
+
+
+        int column = 0;
+        int row = 0;
+        int [][] grille = jeu.getGrille().getTab();
+        Image image = new Image("File:images/mur.png");
+
+        Image sansMur = new Image("File:images/sansMur.png");
+
+        Image pacman_bas = new Image("File:images/pacman_bas.png");
+        Image pacman_haut = new Image("File:images/pacman_haut.png");
+        Image pacman_gauche = new Image("File:images/pacman_gauche.png");
+        Image pacman_droite = new Image("File:images/pacman_droite.png");
+        Image pacgum = new Image("File:images/pac_gomme.png");
+        Image superpacgum = new Image("File:images/SuperPacgum.png");
+        Image fantomeJaune = new Image("File:images/fantome_jaune.png");
+        Image fantomeBleu = new Image("File:images/fantome_bleu.png");
+        Image fantomeRose = new Image("File:images/fantome_rose.png");
+
+        ImageView [][] imageViewTab = new ImageView[longueur][largeur];
+
+        for (int i = 0;i<longueur;i++) {
+            for(int j = 0;j<largeur;j++){
+
+                ImageView imageView = new ImageView();
+
+                imageViewTab[i][j] = imageView;
+                gPane.add(imageView,j, i);
+
             }
-            
+
+            gPane.add(new Text("Score"), 33,3);
+           
+            gPane.add(new Text(), 33,4);
+        }
+
 
             jeu.addObserver(new Observer(){
-                @Override
-                public void update(Observable o, Object arg) {
-                    
-                    Grille grilleJeu = jeu.getGrille();
-                    int tab[][] = grilleJeu.getTab();
-                    
-                    for(int i = 0;i<grilleJeu.getHorizontale();i++){
-                        for(int j = 0;j<grilleJeu.getVerticale();j++){
-                            if(tab[i][j]==0){
-                                imageViewTab[i][j].setImage(image);
-                            }else if(tab[i][j]==3){
-                                imageViewTab[i][j].setImage(superpacgum);
-                            }else if(tab[i][j]==1){
-                                imageViewTab[i][j].setImage(pacgum);
+            @Override
+            public void update(Observable o, Object arg) {
+
+                Grille grilleJeu = jeu.getGrille();
+                int tab[][] = grilleJeu.getTab();
+                Pane paneScore = new Pane();
+                Text scoreV=new Text(""+jeu.getGrille().getScore());
+                Text scoret = new Text("Score");
+                scoreTex = new TextFlow(scoret, scoreV);
+                for(int i = 0;i<grilleJeu.getHorizontale();i++){
+                    for(int j = 0;j<grilleJeu.getVerticale();j++){
+                        if(tab[i][j]==0){
+                            imageViewTab[i][j].setImage(image);
+                        }else if(tab[i][j]==3){
+                            imageViewTab[i][j].setImage(superpacgum);
+                        }else if(tab[i][j]==1){
+                            imageViewTab[i][j].setImage(pacgum);
+                        }else{
+                            imageViewTab[i][j].setImage(sansMur);
+                        }
+
+
+                        if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j && jeu.getPacman().getNumVie()>0){
+                            if(deplacement==Dir.b){
+                               imageViewTab[i][j].setImage(pacman_bas);
+                            }else if(deplacement==Dir.h){
+                               imageViewTab[i][j].setImage(pacman_haut);
+                            }else if(deplacement==Dir.g){
+                               imageViewTab[i][j].setImage(pacman_gauche);
                             }else{
                                 imageViewTab[i][j].setImage(sansMur);
                             }
-                            
-                            
-                            if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j){
-                                if(deplacement==Dir.b){
-                                    imageViewTab[i][j].setImage(pacman_bas);
-                                }else if(deplacement==Dir.h){
-                                    imageViewTab[i][j].setImage(pacman_haut);
-                                }else if(deplacement==Dir.g){
-                                    imageViewTab[i][j].setImage(pacman_gauche);
-                                }else{
-                                    imageViewTab[i][j].setImage(pacman_droite);
-                                }
-                                
-                            }else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j){
-                                imageViewTab[i][j].setImage(fantomeJaune);
-                            }
-                            else if(jeu.getSuperFantome().getX() == i && jeu.getSuperFantome().getY() == j){
-                                imageViewTab[i][j].setImage(fantomeBleu);
-                            }
-                            
-                            
-                            
+
+                        }else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j && jeu.getFantome().getNumVie()>0 ){
+                            imageViewTab[i][j].setImage(fantomeJaune);
                         }
-                        
-                        
-                    }/**
-                     * On regarde quelle pacgomme on mange, pour pouvoir mettre le score adéquate
-                     */
-                    
-                    
-                    /*    if(grilleJeu.getTab()[jeu.getPacman().getX()][jeu.getPacman().getY()]==1){
-                    jeu.getPacman().manger(1);
-                    score = jeu.getGrille().getScore();
-                    grilleJeu.getTab()[jeu.getPacman().getX()][jeu.getPacman().getY()]=2;
-                    
-                    }else if (grilleJeu.getTab()[jeu.getPacman().getX()][jeu.getPacman().getY()]==3){
-                    jeu.getPacman().manger(3);
-                    score = jeu.getGrille().getScore();
-                    grilleJeu.getTab()[jeu.getPacman().getX()][jeu.getPacman().getY()]=2;
+                        else if(jeu.getSuperFantome().getX() == i && jeu.getSuperFantome().getY() == j && jeu.getSuperFantome().getNumVie()>0){
+                            imageViewTab[i][j].setImage(fantomeBleu);
+                        }
                     }
-                    */
-                    
-                    
-                    jeu.getPacman().deplacement(deplacement);
-                    jeu.getFantome().run();
-                    jeu.getSuperFantome().run();
-                    
-                    System.out.println(String.valueOf(jeu.getGrille().getScore()));
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        Thread.interrupted();
-                        
-                    }
-                   
-                    scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
-                    vieAffichage.setText(String.valueOf(jeu.getPacman().getNumVie()));
-                   // scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
-                   // scoreAffichage.setVisible(true);
-                    //
-                    /**
-                     * On convertit le score en String pour pouvoir le l'afficher via scoreAffichage
-                     */
-                    
-                    //scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
-                    //gPane.add(new Text(String.valueOf(jeu.getGrille().getScore())), 33,3);
+
                 }
-            });
-            Thread.sleep(1000);
-            
-            hb1.getChildren().addAll(labelScore,scoreAffichage);
-            hb1.setSpacing(10);
-            hb2.getChildren().addAll(labelVie,vieAffichage);
-            hb2.setSpacing(10);
-            infoJeu.getChildren().addAll(hb1,hb2);
-            paneScore.getChildren().addAll(infoJeu);
-            gPane.setGridLinesVisible(false);
-            
-            border.setCenter(gPane);
-            border.setRight(paneScore);
-            
-            Scene scene = new Scene(border, Color.LIGHTBLUE);
-            /**
-             * Ici nous avons les event permettant de gérer les déplacements à l'aide du clavier
-             */
-            scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                @Override
-                public void handle(KeyEvent event) {
-                    switch(event.getCode()){
-                        case UP:
-                            deplacement = Dir.h;
-                            break;
-                        case DOWN:
-                            deplacement = Dir.b;
-                            break;
-                        case LEFT:
-                            deplacement = Dir.g;
-                            break;
-                        case RIGHT:
-                            deplacement = Dir.d;
-                            break;
-                    }
+
+
+
+                jeu.getPacman().deplacement(deplacement);
+                jeu.getFantome().run();
+                jeu.getSuperFantome().run();
+                
+                if(jeu.getFantome().getX()==jeu.getFantome().getX() && jeu.getFantome().getY()==jeu.getFantome().getY() ){
+                    jeu.getPacman().manger(jeu.getFantome());
+                     jeu.getFantome().manger(jeu.getPacman());
                 }
+                if(jeu.getSuperFantome().getX()==jeu.getSuperFantome().getX() && jeu.getSuperFantome().getY()==jeu.getSuperFantome().getY() ){
+                    jeu.getPacman().manger(jeu.getSuperFantome());
+                    jeu.getSuperFantome().manger(jeu.getPacman());
+                }
+                /**
+                * On convertit le score en String pour pouvoir le l'afficher via scoreAffichage
+                */
+                //scoreAffichage.setText(String.valueOf(score));
+                
+                 
+            }
             });
-            primaryStage.setFullScreen(true);
-            primaryStage.setTitle("Jeu Pacman");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-            
-            new Thread(jeu).start();
-            new Thread(jeu.getFantome()).start();
-            new Thread(jeu.getSuperFantome()).start();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(VueControleur.class.getName()).log(Level.SEVERE, null, ex);
+
+        gPane.setGridLinesVisible(false);
+
+        border.setCenter(gPane);
+        border.setRight(scoreTex);
+       // border.setRight(paneScore);
+
+        Scene scene = new Scene(border, Color.LIGHTBLUE);
+        /**
+         * Ici nous avons les event permettant de gérer les déplacements à l'aide du clavier
+         */
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                switch(event.getCode()){
+                case UP:
+                    deplacement = Dir.h;
+                    break;
+                case DOWN:
+                    deplacement = Dir.b;
+                    break;
+                case LEFT:
+                    deplacement = Dir.g;
+                    break;
+                case RIGHT:
+                    deplacement = Dir.d;
+                    break;
+            }
         }
+
+    });
+        primaryStage.setFullScreen(true);
+        primaryStage.setTitle("Jeu Pacman");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        new Thread(jeu).start();
+        new Thread(jeu.getFantome()).start();
+        new Thread(jeu.getSuperFantome()).start();
 
     }
 
