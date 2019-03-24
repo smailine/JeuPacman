@@ -130,6 +130,24 @@ public class Grille {
     public int getElement(int x, int y){return tab[x][y];}
     public void setValeur(int x, int y, int valeur){tab[x][y]=valeur;}
     
+    
+    
+    public void intersetion(int x,int y){
+        int[][] intersection=new int[2][2];
+        if( tab[x+1][y]>0){
+            intersection[0][0]=1;
+        }
+        if( tab[x-1][y]>0){
+            intersection[0][1]=-1;
+        }
+        if( tab[x][y+1]>0){
+            intersection[1][0]=1;
+        }
+        if( tab[x][y-1]>0){
+            intersection[1][1]=-1;
+        }
+    }
+    
      @Override
     public String toString(){
         String a="";

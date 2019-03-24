@@ -101,16 +101,11 @@ public class VueControleur extends Application {
         Image fantomeJaune = new Image("File:images/fantome_jaune.png");
         Image fantomeBleu = new Image("File:images/fantome_bleu.png");
         Image fantomeRose = new Image("File:images/fantome_rose.png");
-<<<<<<< HEAD
         Image fantomeJauneMangeable = new Image("File:images/fantome_jaune_bis.png");
         Image fantomeBleuMangeable = new Image("File:images/fantome_bleu_bis.png");
         Image fantomeRoseMangeable = new Image("File:images/fantome_rose_bis.png");
         Image fantomeMort = new Image("File:images/mort.png");
         ImageView [][] imageViewTab = new ImageView[longueur][largeur];
-=======
-
-        ImageView [][] imageViewTab = new ImageView[largeur][longueur];
->>>>>>> 765d51124f1452ab78d8fcd7aae993f34d1205ec
 
         for (int i = 0;i<largeur;i++) {
             for(int j = 0;j<longueur;j++){
@@ -133,7 +128,7 @@ public class VueControleur extends Application {
                 Grille grilleJeu = jeu.getGrille();
                 int tab[][] = grilleJeu.getTab();
 
-                
+
                 // i pour parcourir les X
                 // j pour parcourir les Y
                 for(int i = 0;i<grilleJeu.getVerticale();i++){
@@ -148,32 +143,27 @@ public class VueControleur extends Application {
                             imageViewTab[i][j].setImage(sansMur);
                         }
 
-<<<<<<< HEAD
                         if(jeu.getSuperFantome().getX() == i && jeu.getSuperFantome().getY() == j){
-                            if(jeu.getFantome().getNumVie()==2) { 
+                            if(jeu.getFantome().getNumVie()==2) {
                                 if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeBleuMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeBleu);}
                             }
                              else if(jeu.getFantome().getNumVie()==1){
                                 imageViewTab[i][j].setImage(fantomeMort);
                             }
-                            
+
                         }
                         else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j ){
-                            if(jeu.getFantome().getNumVie()==2) {  
+                            if(jeu.getFantome().getNumVie()==2) {
                                 if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeJauneMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeJaune);}
                             }
                             else if(jeu.getFantome().getNumVie()==1){
                                 imageViewTab[i][j].setImage(fantomeMort);
                             }
-                            
+
                         }
                         else if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j && jeu.getPacman().getNumVie()>0){
-=======
-
-                        if(jeu.getPacman().getX() == j && jeu.getPacman().getY() == i){
->>>>>>> 765d51124f1452ab78d8fcd7aae993f34d1205ec
                                 if(deplacement==Dir.b){
                                     imageViewTab[i][j].setImage(pacman_bas);
                                 }else if(deplacement==Dir.h){
@@ -183,19 +173,10 @@ public class VueControleur extends Application {
                                 }else{
                                     imageViewTab[i][j].setImage(pacman_droite);
                                 }
-<<<<<<< HEAD
                         }
 
-                            
-                            
-=======
-                            }else if(jeu.getFantome().getX() == j && jeu.getFantome().getY() == i){
-                                imageViewTab[i][j].setImage(fantomeJaune);
-                            }
-                            else if(jeu.getSuperFantome().getX() == j && jeu.getSuperFantome().getY() == i){
-                                imageViewTab[i][j].setImage(fantomeBleu);
-                            }
->>>>>>> 765d51124f1452ab78d8fcd7aae993f34d1205ec
+
+
                     }
                 }
 
@@ -210,18 +191,13 @@ public class VueControleur extends Application {
 
                 if(jeu.getFantome().getX()==jeu.getPacman().getX() && jeu.getFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getFantome());
-                     jeu.getFantome().manger(jeu.getPacman());
+                    jeu.getFantome().manger(jeu.getPacman());
                 }
                 if(jeu.getSuperFantome().getX()==jeu.getPacman().getX() && jeu.getSuperFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getSuperFantome());
                     jeu.getSuperFantome().manger(jeu.getPacman());
                 }
-                /**
-                * On convertit le score en String pour pouvoir le l'afficher via scoreAffichage
-                */
-                //scoreAffichage.setText(String.valueOf(score));
-
-
+               
             }
             });
 
@@ -237,7 +213,7 @@ public class VueControleur extends Application {
 
         border.setCenter(gPane);
         border.setRight(paneScore);
-       // border.setRight(paneScore);
+      ;
 
         Scene scene = new Scene(border, Color.LIGHTBLUE);
         /**

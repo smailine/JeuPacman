@@ -17,9 +17,9 @@ public class SuperFantome extends Fantome {
     }
     
     public int[] distancePacman(){return new int[]{x-pac.getX(),y-pac.getY()};}
+    
+    
     @Override
-    
-    
     public void run(){
         
         
