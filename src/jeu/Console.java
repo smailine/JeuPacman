@@ -49,6 +49,6 @@ public class Console implements Observer{
         }
         System.out.println("   ");
         this.jeu.getPacman().deplacement(Dir.b);
-       
+        System.out.println( "\n\nvie pacman: " + new Pacman(new Grille()).getNumVie()+"\n\n");
     }
 }

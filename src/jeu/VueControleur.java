@@ -49,13 +49,8 @@ import jeu.Jeu;
  * @author freder
  */
 public class VueControleur extends Application {
-<<<<<<< HEAD
     Dir deplacement = Dir.h;
     String score="0";
-=======
-    Dir deplacement = Dir.d;
-    TextFlow scoreTex = new TextFlow(); ;
->>>>>>> 86db2c18d101f53b20f97adb410e5e128368457d
     @Override
     public void start(Stage primaryStage) {
 
@@ -66,18 +61,12 @@ public class VueControleur extends Application {
         BorderPane border = new BorderPane();
 
         GridPane gPane = new GridPane();
-<<<<<<< HEAD
-        
-        
-        
-        
-=======
 
         VBox infoJeu = new VBox();
         HBox hb1 = new HBox();
         HBox hb2 = new HBox();
         TextFlow paneScore = new TextFlow();
-        paneScore.setPrefSize(600, 300); 
+        paneScore.setPrefSize(600, 300);
         paneScore.setTextAlignment(TextAlignment.CENTER);
         Label labelScore = new Label("Score : ");
         labelScore.setFont(new Font(30));
@@ -87,7 +76,6 @@ public class VueControleur extends Application {
         scoreAffichage.setFont(new Font(30));
         Text vieAffichage = new Text();
         vieAffichage.setFont(new Font(30));
->>>>>>> 86db2c18d101f53b20f97adb410e5e128368457d
 
         /*Pane paneScore = new Pane();
         Label labelScore = new Label("Score");
@@ -115,7 +103,7 @@ public class VueControleur extends Application {
         Image fantomeRose = new Image("File:images/fantome_rose.png");
 
         ImageView [][] imageViewTab = new ImageView[longueur][largeur];
-        
+
         for (int i = 0;i<longueur;i++) {
             for(int j = 0;j<largeur;j++){
 
@@ -123,16 +111,10 @@ public class VueControleur extends Application {
 
                 imageViewTab[i][j] = imageView;
                 gPane.add(imageView,j, i);
-               
+
             }
 
-<<<<<<< HEAD
-            gPane.add(new Text("Score"), 33,3);
-           Text affichescore= new Text(score);
-            gPane.add(affichescore, 33,4);
-=======
-            
->>>>>>> 86db2c18d101f53b20f97adb410e5e128368457d
+
         }
 
 
@@ -142,17 +124,8 @@ public class VueControleur extends Application {
 
                 Grille grilleJeu = jeu.getGrille();
                 int tab[][] = grilleJeu.getTab();
-<<<<<<< HEAD
-                Pane paneScore = new Pane();
-                Text vie=new Text(""+jeu.getPacman().getNumVie());
-                Text scoret = new Text("Score");
-                //scoreTex = new TextFlow(vie);
-                 //gPane.add(new Text(""+jeu.getGrille().getScore()), 33,4);
-                score=""+jeu.getGrille().getScore();
-=======
-                
->>>>>>> 86db2c18d101f53b20f97adb410e5e128368457d
-                
+
+
                 for(int i = 0;i<grilleJeu.getHorizontale();i++){
                     for(int j = 0;j<grilleJeu.getVerticale();j++){
                         if(tab[i][j]==0){
@@ -166,17 +139,6 @@ public class VueControleur extends Application {
                         }
 
 
-<<<<<<< HEAD
-                        if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j /*&& jeu.getPacman().getNumVie()>0*/){
-                            if(deplacement==Dir.b){
-                               imageViewTab[i][j].setImage(pacman_bas);
-                            }else if(deplacement==Dir.h){
-                               imageViewTab[i][j].setImage(pacman_haut);
-                            }else if(deplacement==Dir.g){
-                               imageViewTab[i][j].setImage(pacman_gauche);
-                            }else{
-                               imageViewTab[i][j].setImage(pacman_droite);
-=======
                         if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j){
                                 if(deplacement==Dir.b){
                                     imageViewTab[i][j].setImage(pacman_bas);
@@ -187,13 +149,12 @@ public class VueControleur extends Application {
                                 }else{
                                     imageViewTab[i][j].setImage(pacman_droite);
                                 }
-                                
+
                             }else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j){
                                 imageViewTab[i][j].setImage(fantomeJaune);
                             }
                             else if(jeu.getSuperFantome().getX() == i && jeu.getSuperFantome().getY() == j){
                                 imageViewTab[i][j].setImage(fantomeBleu);
->>>>>>> 86db2c18d101f53b20f97adb410e5e128368457d
                             }
                     }
 
@@ -209,12 +170,12 @@ public class VueControleur extends Application {
                  */
                 scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
                 vieAffichage.setText(String.valueOf(jeu.getPacman().getNumVie()));
-                
-                if(jeu.getFantome().getX()==jeu.getFantome().getX() && jeu.getFantome().getY()==jeu.getFantome().getY() ){
+
+                if(jeu.getFantome().getX()==jeu.getPacman().getX() && jeu.getFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getFantome());
                      jeu.getFantome().manger(jeu.getPacman());
                 }
-                if(jeu.getSuperFantome().getX()==jeu.getSuperFantome().getX() && jeu.getSuperFantome().getY()==jeu.getSuperFantome().getY() ){
+                if(jeu.getSuperFantome().getX()==jeu.getPacman().getX() && jeu.getSuperFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getSuperFantome());
                     jeu.getSuperFantome().manger(jeu.getPacman());
                 }
@@ -222,8 +183,8 @@ public class VueControleur extends Application {
                 * On convertit le score en String pour pouvoir le l'afficher via scoreAffichage
                 */
                 //scoreAffichage.setText(String.valueOf(score));
-                
-                 
+
+
             }
             });
 
@@ -236,19 +197,9 @@ public class VueControleur extends Application {
         infoJeu.getChildren().addAll(hb1,hb2);
         paneScore.getChildren().addAll(infoJeu);
         gPane.setGridLinesVisible(false);
-            
+
         border.setCenter(gPane);
-<<<<<<< HEAD
-        /*int e=0;
-        ImageView vie = new ImageView();
-        vie.setImage(pacman_gauche);
-        
-        border.setBottom(scoreTex);*/
-        
-        
-=======
         border.setRight(paneScore);
->>>>>>> 86db2c18d101f53b20f97adb410e5e128368457d
        // border.setRight(paneScore);
 
         Scene scene = new Scene(border, Color.LIGHTBLUE);
