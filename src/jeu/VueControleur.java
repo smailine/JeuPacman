@@ -34,6 +34,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -65,16 +66,20 @@ public class VueControleur extends Application {
             
             GridPane gPane = new GridPane();
             
-            HBox hb = new HBox();
+            VBox infoJeu = new VBox();
+            HBox hb1 = new HBox();
+            HBox hb2 = new HBox();
             TextFlow paneScore = new TextFlow();
-           
-            Label labelScore = new Label("Score");
-            //paneScore.getChildren().add(labelScore);
-           
+            paneScore.setPrefSize(600, 300); 
+            paneScore.setTextAlignment(TextAlignment.CENTER);
+            Label labelScore = new Label("Score : ");
+            labelScore.setFont(new Font(30));
+            Label labelVie = new Label("Vie : ");
+            labelVie.setFont(new Font(30));
             Text scoreAffichage = new Text();
-            
-            
-            
+            scoreAffichage.setFont(new Font(30));
+            Text vieAffichage = new Text();
+            vieAffichage.setFont(new Font(30));
             
             int column = 0;
             int row = 0;
@@ -183,6 +188,7 @@ public class VueControleur extends Application {
                     }
                    
                     scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
+                    vieAffichage.setText(String.valueOf(jeu.getPacman().getNumVie()));
                    // scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
                    // scoreAffichage.setVisible(true);
                     //
@@ -196,9 +202,12 @@ public class VueControleur extends Application {
             });
             Thread.sleep(1000);
             
-            hb.getChildren().addAll(labelScore,scoreAffichage);
-            hb.setSpacing(10);
-            paneScore.getChildren().add(hb);
+            hb1.getChildren().addAll(labelScore,scoreAffichage);
+            hb1.setSpacing(10);
+            hb2.getChildren().addAll(labelVie,vieAffichage);
+            hb2.setSpacing(10);
+            infoJeu.getChildren().addAll(hb1,hb2);
+            paneScore.getChildren().addAll(infoJeu);
             gPane.setGridLinesVisible(false);
             
             border.setCenter(gPane);
