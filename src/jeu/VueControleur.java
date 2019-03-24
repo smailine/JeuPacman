@@ -106,10 +106,10 @@ public class VueControleur extends Application {
         Image fantomeBleu = new Image("File:images/fantome_bleu.png");
         Image fantomeRose = new Image("File:images/fantome_rose.png");
 
-        ImageView [][] imageViewTab = new ImageView[longueur][largeur];
+        ImageView [][] imageViewTab = new ImageView[largeur][longueur];
 
-        for (int i = 0;i<longueur;i++) {
-            for(int j = 0;j<largeur;j++){
+        for (int i = 0;i<largeur;i++) {
+            for(int j = 0;j<longueur;j++){
 
                 ImageView imageView = new ImageView();
 
@@ -129,9 +129,10 @@ public class VueControleur extends Application {
                 Grille grilleJeu = jeu.getGrille();
                 int tab[][] = grilleJeu.getTab();
                 
-                
-                for(int i = 0;i<grilleJeu.getHorizontale();i++){
-                    for(int j = 0;j<grilleJeu.getVerticale();j++){
+                // i pour parcourir les X
+                // j pour parcourir les Y
+                for(int i = 0;i<grilleJeu.getVerticale();i++){
+                    for(int j = 0;j<grilleJeu.getHorizontale();j++){
                         if(tab[i][j]==0){
                             imageViewTab[i][j].setImage(image);
                         }else if(tab[i][j]==3){
@@ -143,7 +144,7 @@ public class VueControleur extends Application {
                         }
 
 
-                        if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j){
+                        if(jeu.getPacman().getX() == j && jeu.getPacman().getY() == i){
                                 if(deplacement==Dir.b){
                                     imageViewTab[i][j].setImage(pacman_bas);
                                 }else if(deplacement==Dir.h){
@@ -154,17 +155,14 @@ public class VueControleur extends Application {
                                     imageViewTab[i][j].setImage(pacman_droite);
                                 }
                                 
-                            }else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j){
+                            }else if(jeu.getFantome().getX() == j && jeu.getFantome().getY() == i){
                                 imageViewTab[i][j].setImage(fantomeJaune);
                             }
-                            else if(jeu.getSuperFantome().getX() == i && jeu.getSuperFantome().getY() == j){
+                            else if(jeu.getSuperFantome().getX() == j && jeu.getSuperFantome().getY() == i){
                                 imageViewTab[i][j].setImage(fantomeBleu);
                             }
                     }
-
                 }
-
-
 
                 jeu.getPacman().deplacement(deplacement);
                 jeu.getFantome().run();

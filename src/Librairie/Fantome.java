@@ -47,8 +47,8 @@ public class Fantome extends Entite implements Runnable{
    public void manger(Pacman pac){
        if(pac.getModeTueur()==false)
             pac.perdreVie();
-            for(int i=0; i<grille.getVerticale(); i++){
-                for (int j=0; j<grille.getHorizontale();j++){
+            for(int i=0; i<grille.getHorizontale(); i++){
+                for (int j=0; j<grille.getVerticale();j++){
                     if (grille.getElement(j, i)>3){
                         grille.setValeur(j,i,2);
                     }

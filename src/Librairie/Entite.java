@@ -29,27 +29,27 @@ public class Entite {
     }
 
     public boolean deplacement(Dir deplacement){
-        System.out.println(deplacement);
+        
         boolean rencontreMur = false;
         int tab[][] = this.grille.getTab();
         switch(deplacement){
             case h:
-                if(this.getX()-1>=0){
-                    if(tab[x-1][y]==0){
+                if(this.getY()-1>=0){
+                    if(tab[y-1][x]==0){
                         rencontreMur = true;
                     }else{
-                        this.setX(x-1);
+                        this.setY(y-1);
                         derniereDirection=Dir.h;
                         rencontreMur = false;
                     }
                 }
             break;
             case b:
-                if(this.getX()+1<this.grille.getVerticale()){
-                   if(tab[x+1][y]==0){
+                if(this.getY()+1<this.grille.getVerticale()){
+                    if(tab[y+1][x]==0){
                         rencontreMur = true;
                     }else{
-                        this.setX(x+1);
+                        this.setY(y+1);
                         rencontreMur = false;
                         derniereDirection=Dir.b;
                     }
@@ -57,11 +57,11 @@ public class Entite {
             break;
 
             case d:
-                if(this.getY()+1<this.grille.getHorizontale()){
-                    if(tab[x][y+1]==0){
+                if(this.getX()+1<this.grille.getHorizontale()){
+                    if(tab[y][x+1]==0){
                         rencontreMur = true;
                     }else{
-                        this.setY(y+1);
+                        this.setX(x+1);
                         rencontreMur = false;
                         derniereDirection=Dir.d;
                     }
@@ -69,11 +69,11 @@ public class Entite {
             break;
 
             case g:
-                if(this.getY()-1>=0){
-                   if(tab[x][y-1]==0){
+                if(this.getX()-1>=0){
+                   if(tab[y][x-1]==0){
                         rencontreMur = true;
                     }else{
-                        this.setY(y-1);
+                        this.setX(x-1);
                         rencontreMur = false;
                         derniereDirection=Dir.g;
                     }
