@@ -39,6 +39,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 import jeu.Jeu;
 
 /**
@@ -63,12 +64,12 @@ public class VueControleur extends Application {
             
             GridPane gPane = new GridPane();
             
-           /* Group p = new Group();
-            Pane paneScore = new Pane();
+            Group p = new Group();
+            TextFlow paneScore = new TextFlow();
             Label labelScore = new Label("Score");
             //paneScore.getChildren().add(labelScore);
             p.getChildren().add(labelScore);
-            Label scoreAffichage = new Label();*/
+            Text scoreAffichage = new Text();
             
             
             
@@ -102,7 +103,7 @@ public class VueControleur extends Application {
                     
                 }
                 
-                gPane.add(new Text("Score"), 33,3);
+                //gPane.add(new Text("Score"), 33,3);
             }
             
 
@@ -170,10 +171,19 @@ public class VueControleur extends Application {
                     jeu.getPacman().deplacement(deplacement);
                     jeu.getFantome().run();
                     jeu.getSuperFantome().run();
+                    
                     System.out.println(String.valueOf(jeu.getGrille().getScore()));
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        Thread.interrupted();
+                        
+                    }
+                   
+                    scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
                    // scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
                    // scoreAffichage.setVisible(true);
-                    //scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
+                    //
                     /**
                      * On convertit le score en String pour pouvoir le l'afficher via scoreAffichage
                      */
@@ -184,12 +194,12 @@ public class VueControleur extends Application {
             });
             Thread.sleep(1000);
             
-            //p.getChildren().add(scoreAffichage);
-            //paneScore.getChildren().add(p);
+            p.getChildren().add(scoreAffichage);
+            paneScore.getChildren().add(p);
             gPane.setGridLinesVisible(false);
             
             border.setCenter(gPane);
-            //border.setRight(paneScore);
+            border.setRight(paneScore);
             
             Scene scene = new Scene(border, Color.LIGHTBLUE);
             /**
