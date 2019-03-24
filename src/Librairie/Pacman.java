@@ -51,7 +51,7 @@ public class Pacman extends Entite{
 
     public void manger(Fantome f){
         if(f.getNumVie()>0 && this.getModeTueur()==true)
-            f.setNumVie(f.getNumVie()-1);
+            f.mort();
     }
 
 
@@ -60,8 +60,7 @@ public class Pacman extends Entite{
             numVie-=1;
     }
     public boolean getModeTueur(){return modeTueur;}
-    public int getNumVie()
-    {return numVie;}
+    public int getNumVie(){return numVie;}
 
 
 
@@ -144,4 +143,8 @@ public class Pacman extends Entite{
 
         return rencontreMur;
     }
+  /* public static void main(String[] args) {
+       
+   System.out.println( "\n\nvie pacman: " + new Pacman(new Grille()).getNumVie()+"\n\n");
+   }*/
 }

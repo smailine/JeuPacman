@@ -75,10 +75,11 @@ public class Jeu extends Observable implements Runnable{
     public static void main(String[] args) {
         Jeu j = new Jeu();
         //Entite e = new Entite(j.getGrille());
-
+        
         Console c = new Console(j);
         j.addObserver(c);
         new Thread(j).start();
+        
         
     }
 
