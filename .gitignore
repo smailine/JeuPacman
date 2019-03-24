@@ -1,9 +1,5 @@
 
 *.class
-<<<<<<< HEAD
-/dist/
-=======
 build/built-jar.properties
 dist/JeuPacman.jar
 dist/JeuPacman.jnlp
->>>>>>> fdb82b425ca7f0e105ed41d210a89e6eb86d412b
