@@ -71,6 +71,9 @@ public class Grille {
 
     }
 
+     public int[] getCaseTeleportation(){
+    return new int[]{14,1};}
+
     public int[][] getCroisement(){
     return croisement;}
 

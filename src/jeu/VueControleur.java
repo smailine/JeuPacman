@@ -7,7 +7,7 @@
 package jeu;
 
 import Librairie.Dir;
-import Librairie.FantomeNormal;
+import Librairie.FantomeInnocent;
 import Librairie.Grille;
 import java.awt.Graphics;
 import java.util.Observable;
@@ -101,7 +101,10 @@ public class VueControleur extends Application {
         Image fantomeJaune = new Image("File:images/fantome_jaune.png");
         Image fantomeBleu = new Image("File:images/fantome_bleu.png");
         Image fantomeRose = new Image("File:images/fantome_rose.png");
-
+        Image fantomeJauneMangeable = new Image("File:images/fantome_jaune_bis.png");
+        Image fantomeBleuMangeable = new Image("File:images/fantome_bleu_bis.png");
+        Image fantomeRoseMangeable = new Image("File:images/fantome_rose_bis.png");
+        Image fantomeMort = new Image("File:images/mort.png");
         ImageView [][] imageViewTab = new ImageView[longueur][largeur];
 
         for (int i = 0;i<longueur;i++) {
@@ -138,8 +141,27 @@ public class VueControleur extends Application {
                             imageViewTab[i][j].setImage(sansMur);
                         }
 
-
-                        if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j){
+                        if(jeu.getSuperFantome().getX() == i && jeu.getSuperFantome().getY() == j){
+                            if(jeu.getFantome().getNumVie()==2) { 
+                                if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeBleuMangeable);}
+                                else{imageViewTab[i][j].setImage(fantomeBleu);}
+                            }
+                             else if(jeu.getFantome().getNumVie()==1){
+                                imageViewTab[i][j].setImage(fantomeMort);
+                            }
+                            
+                        }
+                        else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j ){
+                            if(jeu.getFantome().getNumVie()==2) {  
+                                if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeJauneMangeable);}
+                                else{imageViewTab[i][j].setImage(fantomeJaune);}
+                            }
+                            else if(jeu.getFantome().getNumVie()==1){
+                                imageViewTab[i][j].setImage(fantomeMort);
+                            }
+                            
+                        }
+                        else if(jeu.getPacman().getX() == i && jeu.getPacman().getY() == j && jeu.getPacman().getNumVie()>0){
                                 if(deplacement==Dir.b){
                                     imageViewTab[i][j].setImage(pacman_bas);
                                 }else if(deplacement==Dir.h){
@@ -149,13 +171,10 @@ public class VueControleur extends Application {
                                 }else{
                                     imageViewTab[i][j].setImage(pacman_droite);
                                 }
+                        }
 
-                            }else if(jeu.getFantome().getX() == i && jeu.getFantome().getY() == j){
-                                imageViewTab[i][j].setImage(fantomeJaune);
-                            }
-                            else if(jeu.getSuperFantome().getX() == i && jeu.getSuperFantome().getY() == j){
-                                imageViewTab[i][j].setImage(fantomeBleu);
-                            }
+                            
+                            
                     }
 
                 }
