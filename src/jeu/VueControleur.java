@@ -49,18 +49,14 @@ import jeu.Jeu;
  * @author freder
  */
 public class VueControleur extends Application {
-    Dir deplacement = Dir.d;
-    TextFlow scoreTex = new TextFlow(); ;
+    Dir deplacement = Dir.h;
+    String score="0";
     @Override
     public void start(Stage primaryStage) {
 
         Jeu jeu = new Jeu();
-
-
         int longueur = jeu.getGrille().getHorizontale();
         int largeur = jeu.getGrille().getVerticale();
-
-
 
         BorderPane border = new BorderPane();
 
@@ -70,7 +66,7 @@ public class VueControleur extends Application {
         HBox hb1 = new HBox();
         HBox hb2 = new HBox();
         TextFlow paneScore = new TextFlow();
-        paneScore.setPrefSize(600, 300); 
+        paneScore.setPrefSize(600, 300);
         paneScore.setTextAlignment(TextAlignment.CENTER);
         Label labelScore = new Label("Score : ");
         labelScore.setFont(new Font(30));
@@ -118,7 +114,7 @@ public class VueControleur extends Application {
 
             }
 
-            
+
         }
 
 
@@ -128,6 +124,7 @@ public class VueControleur extends Application {
 
                 Grille grilleJeu = jeu.getGrille();
                 int tab[][] = grilleJeu.getTab();
+
                 
                 // i pour parcourir les X
                 // j pour parcourir les Y
@@ -154,7 +151,6 @@ public class VueControleur extends Application {
                                 }else{
                                     imageViewTab[i][j].setImage(pacman_droite);
                                 }
-                                
                             }else if(jeu.getFantome().getX() == j && jeu.getFantome().getY() == i){
                                 imageViewTab[i][j].setImage(fantomeJaune);
                             }
@@ -172,12 +168,12 @@ public class VueControleur extends Application {
                  */
                 scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
                 vieAffichage.setText(String.valueOf(jeu.getPacman().getNumVie()));
-                
-                if(jeu.getFantome().getX()==jeu.getFantome().getX() && jeu.getFantome().getY()==jeu.getFantome().getY() ){
+
+                if(jeu.getFantome().getX()==jeu.getPacman().getX() && jeu.getFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getFantome());
                      jeu.getFantome().manger(jeu.getPacman());
                 }
-                if(jeu.getSuperFantome().getX()==jeu.getSuperFantome().getX() && jeu.getSuperFantome().getY()==jeu.getSuperFantome().getY() ){
+                if(jeu.getSuperFantome().getX()==jeu.getPacman().getX() && jeu.getSuperFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getSuperFantome());
                     jeu.getSuperFantome().manger(jeu.getPacman());
                 }
@@ -185,8 +181,8 @@ public class VueControleur extends Application {
                 * On convertit le score en String pour pouvoir le l'afficher via scoreAffichage
                 */
                 //scoreAffichage.setText(String.valueOf(score));
-                
-                 
+
+
             }
             });
 
@@ -199,7 +195,7 @@ public class VueControleur extends Application {
         infoJeu.getChildren().addAll(hb1,hb2);
         paneScore.getChildren().addAll(infoJeu);
         gPane.setGridLinesVisible(false);
-            
+
         border.setCenter(gPane);
         border.setRight(paneScore);
        // border.setRight(paneScore);

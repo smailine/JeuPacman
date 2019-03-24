@@ -19,7 +19,7 @@ import javafx.beans.Observable;
  * @author cardo
  */
 public class Pacman extends Entite{
-    private int numVie;
+    private int numVie=3;
     private boolean modeTueur;
 
     public Pacman(Grille grille) {
@@ -39,22 +39,19 @@ public class Pacman extends Entite{
     }
 
 
-    public void manger(int pacgum){
-        if(pacgum==1){
-            grille.setScore(grille.getScore()+10);}
-        else if(pacgum==3){
-            grille.setScore(grille.getScore()+100);
-           changeMode();
-        }
-    }
+   
 
 
     public void manger(Fantome f){
-        if(f.getNumVie()>0 && this.getModeTueur()==true)
+        if(f.getNumVie()>0 && this.getModeTueur()==true && f.getX()==this.getX() && f.getY()==this.getY())
             f.mort();
     }
 
-
+    public void setPosition(int x, int y){
+            
+        this.x=x;
+        this.y=y;
+    }
     public void perdreVie(){
         if(numVie>0)
             numVie-=1;
@@ -79,6 +76,7 @@ public class Pacman extends Entite{
         
         boolean rencontreMur = false;
         int tab[][] = this.grille.getTab();
+        if(numVie>0){
         switch(deplacement){
             case h:
                 if(this.getY()-1>=0){
@@ -148,11 +146,15 @@ public class Pacman extends Entite{
             break;
 
         }
+        }
 
         return rencontreMur;
     }
-  /* public static void main(String[] args) {
-       
+
+    
+   
+
+ public static void main(String[] args) {
    System.out.println( "\n\nvie pacman: " + new Pacman(new Grille()).getNumVie()+"\n\n");
-   }*/
+   }
 }
