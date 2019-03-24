@@ -62,14 +62,9 @@ public class Pacman extends Entite{
 
 
   public boolean deplacement(Dir deplacement){
-<<<<<<< HEAD
         if (x==grille.getCaseTeleportation()[0] && y==grille.getCaseTeleportation()[1] && grille.getElement(x, y)!=3){this.setPosition(14, 26);}
-        for(int i = 0;i<grille.getHorizontale();i++){
-          for(int j = 0;j<grille.getVerticale();j++){
-=======
         for(int i = 0;i<grille.getVerticale();i++){
           for(int j = 0;j<grille.getHorizontale();j++){
->>>>>>> 765d51124f1452ab78d8fcd7aae993f34d1205ec
               if(grille.getTab()[i][j]>3){
 
                   grille.setValeur(j,i,grille.getElement(j, i)-4);
