@@ -32,6 +32,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -64,11 +65,12 @@ public class VueControleur extends Application {
             
             GridPane gPane = new GridPane();
             
-            Group p = new Group();
+            HBox hb = new HBox();
             TextFlow paneScore = new TextFlow();
+           
             Label labelScore = new Label("Score");
             //paneScore.getChildren().add(labelScore);
-            p.getChildren().add(labelScore);
+           
             Text scoreAffichage = new Text();
             
             
@@ -194,8 +196,9 @@ public class VueControleur extends Application {
             });
             Thread.sleep(1000);
             
-            p.getChildren().add(scoreAffichage);
-            paneScore.getChildren().add(p);
+            hb.getChildren().addAll(labelScore,scoreAffichage);
+            hb.setSpacing(10);
+            paneScore.getChildren().add(hb);
             gPane.setGridLinesVisible(false);
             
             border.setCenter(gPane);
