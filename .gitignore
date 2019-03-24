@@ -1,6 +1,4 @@
 
 *.class
-build/built-jar.properties
-dist/JeuPacman.jar
-dist/JeuPacman.jnlp
-dist/JeuPacman.html
+build/
+dist/
