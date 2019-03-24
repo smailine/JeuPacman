@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 
 *.class
 build/built-jar.properties
 dist/JeuPacman.jar
 dist/JeuPacman.jnlp
+=======
+
+*.class
+build/
+dist/
+>>>>>>> 86db2c18d101f53b20f97adb410e5e128368457d
