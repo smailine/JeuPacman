@@ -30,7 +30,7 @@ public class Jeu extends Observable implements Runnable{
        this.grille  = new Grille();
        this.pacman= new Pacman(grille);
        this.fan=new FantomeNormal(14,12,grille);
-       this.sufan=new SuperFantome(15,13,grille);
+       this.sufan=new SuperFantome(15,14,grille,pacman);
     }
 
     public Grille getGrille() {
