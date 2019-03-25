@@ -5,6 +5,9 @@
  */
 package Librairie;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author cardo
@@ -112,14 +115,13 @@ public class Entite {
 
     public void changeMode(){
             modeTueur=!modeTueur;
-            if(modeTueur==true){
-                int i =0;
-                while(i<2000)
-                {
-                    i++;
-                }
-                modeTueur=!modeTueur;
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Entite.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            modeTueur=!modeTueur;
             }
     }
 
-}
+

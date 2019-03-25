@@ -33,7 +33,8 @@ public class Fantome extends Entite implements Runnable{
     
     
     public void revivre(){
-        numVie=2;
+        if(numVie>0)
+            numVie=2;
     }
     
    public void mort(){
@@ -45,7 +46,7 @@ public class Fantome extends Entite implements Runnable{
    }
     
    public void manger(Pacman pac){
-       if(pac.getModeTueur()==false && x==pac.getX() && y==pac.getY()){
+       if(pac.getModeTueur()==false && x==pac.getX() && y==pac.getY() && this.numVie>1){
             pac.perdreVie();
             if(pac.getNumVie()>0){pac.setPosition(2,5);}
             for(int i=0; i<grille.getHorizontale(); i++){
@@ -61,6 +62,7 @@ public class Fantome extends Entite implements Runnable{
 
     @Override
     public void run() {
+        if(x>=11 && x<=16 && x>=13 && x<=15)
         this.deplacement(Dir.d);
     }
     
