@@ -16,10 +16,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.application.Platform;
 
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.DropShadow;
@@ -42,6 +44,7 @@ import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
+import javafx.stage.WindowEvent;
 import jeu.Jeu;
 
 /**
@@ -76,7 +79,7 @@ public class VueControleur extends Application {
         scoreAffichage.setFont(new Font(30));
         Text vieAffichage = new Text();
         vieAffichage.setFont(new Font(30));
-
+        Button boutonReinitialisation = new Button("Réinitialisation");
         /*Pane paneScore = new Pane();
         Label labelScore = new Label("Score");
         paneScore.getChildren().add(labelScore);
@@ -249,6 +252,16 @@ public class VueControleur extends Application {
         }
 
     });
+        /**
+         * Code ci-dessous nous permet de fermer la fenêtre avec la croix-rouge
+         */
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
+        });
         primaryStage.setFullScreen(true);
         primaryStage.setTitle("Jeu Pacman");
         primaryStage.setScene(scene);
