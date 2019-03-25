@@ -30,7 +30,7 @@ public class Jeu extends Observable implements Runnable{
        this.grille  = new Grille();
        this.pacman= new Pacman(grille);
        this.fan=new FantomeInnocent(14,12,grille);
-       this.sufan=new FantomeNormal(15,14,grille,pacman);
+       this.sufan=new FantomeNormal(15,14,grille);
     }
 
     public Grille getGrille() {
@@ -63,7 +63,7 @@ public class Jeu extends Observable implements Runnable{
             setChanged();
             notifyObservers();
             try {
-                Thread.sleep(100);
+                Thread.sleep(600);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
             }

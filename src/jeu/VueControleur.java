@@ -113,7 +113,7 @@ public class VueControleur extends Application {
         ImageView [][] imageViewTab = new ImageView[largeur][longueur];
 
         for (int i = 0;i<largeur;i++) {
-            for(int j = 0;j<longueur;j++){
+            for(int j = 0;j< longueur;j++){
 
                 ImageView imageView = new ImageView();
 
@@ -133,10 +133,10 @@ public class VueControleur extends Application {
                 Grille grilleJeu = jeu.getGrille();
                 int tab[][] = grilleJeu.getTab();
 
-                
+
                 // i pour parcourir les X
                 // j pour parcourir les Y
-                for(int i = 0;i<grilleJeu.getVerticale();i++){
+                for(int i = 0;i< grilleJeu.getVerticale() ;i++){
                     for(int j = 0;j<grilleJeu.getHorizontale();j++){
                         if(tab[i][j]==0){
                             imageViewTab[i][j].setImage(image);
@@ -149,24 +149,24 @@ public class VueControleur extends Application {
                         }
 
                         if(jeu.getSuperFantome().getX() == j && jeu.getSuperFantome().getY() == i){
-                            if(jeu.getFantome().getNumVie()==2) { 
+                            if(jeu.getFantome().getNumVie()==2) {
                                 if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeBleuMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeBleu);}
                             }
                              else if(jeu.getFantome().getNumVie()==1){
                                 imageViewTab[i][j].setImage(fantomeMort);
                             }
-                            
+
                         }
                         else if(jeu.getFantome().getX() == j && jeu.getFantome().getY() == i ){
-                            if(jeu.getFantome().getNumVie()==2) {  
+                            if(jeu.getFantome().getNumVie()==2) {
                                 if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeJauneMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeJaune);}
                             }
                             else if(jeu.getFantome().getNumVie()==1){
                                 imageViewTab[i][j].setImage(fantomeMort);
                             }
-                            
+
                         }
                         else if(jeu.getPacman().getX() == j && jeu.getPacman().getY() == i && jeu.getPacman().getNumVie()>0){
 
@@ -201,24 +201,18 @@ public class VueControleur extends Application {
 
                 if(jeu.getFantome().getX()==jeu.getPacman().getX() && jeu.getFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getFantome());
-                     jeu.getFantome().manger(jeu.getPacman());
+                    jeu.getFantome().manger(jeu.getPacman());
                 }
                 if(jeu.getSuperFantome().getX()==jeu.getPacman().getX() && jeu.getSuperFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getSuperFantome());
                     jeu.getSuperFantome().manger(jeu.getPacman());
                 }
-                /**
-                * On convertit le score en String pour pouvoir le l'afficher via scoreAffichage
-                */
-                //scoreAffichage.setText(String.valueOf(score));
-
 
             }
             });
        
 
-        
-       // border.setRight(paneScore);
+
 
         Scene scene = new Scene(border, Color.LIGHTBLUE);
         /**

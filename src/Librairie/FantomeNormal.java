@@ -12,11 +12,10 @@ import static java.lang.Math.abs;
  * @author cardo
  */
 public class FantomeNormal extends Fantome{
-    private Pacman pac;
-    public FantomeNormal(int x, int y, Grille grille, Pacman pac) {
+    public FantomeNormal(int x, int y, Grille grille) {
         super(x,y,grille);
         derniereDirection=Dir.h;
-        this.pac=pac;
+        
         
     }
     

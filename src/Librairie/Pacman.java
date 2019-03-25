@@ -39,7 +39,7 @@ public class Pacman extends Entite{
     }
 
 
-   
+
 
 
     public void manger(Fantome f){
@@ -48,7 +48,7 @@ public class Pacman extends Entite{
     }
 
     public void setPosition(int x, int y){
-            
+
         this.x=x;
         this.y=y;
     }
@@ -62,7 +62,8 @@ public class Pacman extends Entite{
 
 
   public boolean deplacement(Dir deplacement){
-        if (x==grille.getCaseTeleportation()[0] && y==grille.getCaseTeleportation()[1] && grille.getElement(x, y)!=3){this.setPosition(14, 26);}
+        if (x==1 && y==1){this.setPosition(1,29);} // marche bien
+        //if (x==26 && y==29){this.setPosition(26,1);} // pas pris en compte
         for(int i = 0;i<grille.getVerticale();i++){
           for(int j = 0;j<grille.getHorizontale();j++){
               if(grille.getTab()[i][j]>3){
@@ -74,7 +75,7 @@ public class Pacman extends Entite{
               grille.setValeur(y,x,2);}
           }
         }// mise à jour des feremones
-        
+
         boolean rencontreMur = false;
         int tab[][] = this.grille.getTab();
         if(numVie>0){
@@ -152,8 +153,8 @@ public class Pacman extends Entite{
         return rencontreMur;
     }
 
-    
-   
+
+
 
  public static void main(String[] args) {
    System.out.println( "\n\nvie pacman: " + new Pacman(new Grille()).getNumVie()+"\n\n");
