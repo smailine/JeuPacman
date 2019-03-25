@@ -22,6 +22,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Blend;
@@ -82,6 +84,8 @@ public class VueControleur extends Application {
         Text vieAffichage = new Text();
         vieAffichage.setFont(new Font(30));
         Button boutonReinitialisation = new Button("Réinitialisation");
+        Text issuJeu = new Text();
+        issuJeu.setFont(new Font(30));
         /*Pane paneScore = new Pane();
         Label labelScore = new Label("Score");
         paneScore.getChildren().add(labelScore);
@@ -111,6 +115,9 @@ public class VueControleur extends Application {
         Image fantomeRoseMangeable = new Image("File:images/fantome_rose_bis.png");
         Image fantomeMort = new Image("File:images/mort.png");
         ImageView [][] imageViewTab = new ImageView[largeur][longueur];
+        
+        
+            
 
         for (int i = 0;i<largeur;i++) {
             for(int j = 0;j< longueur;j++){
@@ -195,11 +202,20 @@ public class VueControleur extends Application {
                  */
                 scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
                 vieAffichage.setText(String.valueOf(jeu.getPacman().getNumVie()));
+                
+                if(jeu.getPacman().getNumVie()==0){
+                    issuJeu.setText("Game Over, vous n'avez plus de vie");
+                }else if(jeu.getGrille().ttGrilleVisite()){
+                    issuJeu.setText("Vous avez gagné, décidemment vous êtes très fort");
+                }
+                
+                
 
                 if(jeu.getSuperFantome().getX()==jeu.getPacman().getX() && jeu.getSuperFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getSuperFantome());
                     jeu.getSuperFantome().manger(jeu.getPacman());
                 }
+<<<<<<< HEAD
                  
                 else if(jeu.getFantomeNormal().getX()==jeu.getPacman().getX() && jeu.getFantomeNormal().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getFantomeNormal());
@@ -210,6 +226,9 @@ public class VueControleur extends Application {
                     jeu.getFantome().manger(jeu.getPacman());
                 }
 
+=======
+                
+>>>>>>> c147f8fa80e69a56c1eb8145b08171bc5d08463c
             }
             });
        
@@ -246,15 +265,17 @@ public class VueControleur extends Application {
         hb1.setSpacing(10);
         hb2.getChildren().addAll(labelVie,vieAffichage);
         hb2.setSpacing(10);
-        infoJeu.getChildren().addAll(hb1,hb2,boutonReinitialisation);
+        infoJeu.getChildren().addAll(hb1,hb2,issuJeu,boutonReinitialisation);
         paneScore.getChildren().addAll(infoJeu);
         gPane.setGridLinesVisible(false);
 
         border.setCenter(gPane);
         border.setRight(paneScore);
+        
         /**
          * Code ci-dessous nous permet de fermer la fenêtre avec la croix-rouge
          */
+        
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
@@ -262,19 +283,19 @@ public class VueControleur extends Application {
                 System.exit(0);
             }
         });
+        /**
+         * Le bouton boutonReinitialisation permet de réinitialiser le jeu (on recommence du début)
+         */
          boutonReinitialisation.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 System.out.println( "Restarting app!" );
-                
-                /*primaryStage.close();
-                BorderPane borderPane = new BorderPane();
-                Scene newScene = new Scene(borderPane, Color.LIGHTBLUE);
-                primaryStage.setScene(newScene);
-                primaryStage.show();*/
                 jeu = new Jeu();
                 deplacement = Dir.h;
             }
         });
+         
+        
+        
         primaryStage.setFullScreen(true);
         primaryStage.setTitle("Jeu Pacman");
         primaryStage.setScene(scene);
