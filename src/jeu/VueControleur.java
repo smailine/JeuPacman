@@ -143,8 +143,17 @@ public class VueControleur extends Application {
                             imageViewTab[i][j].setImage(sansMur);
                         }
 
-                        if(jeu.getSuperFantome().getX() == j && jeu.getSuperFantome().getY() == i){
-                            if(jeu.getFantome().getNumVie()==2) {
+                         if(jeu.getSuperFantome().getX() == j && jeu.getSuperFantome().getY() == i){
+                            if(jeu.getSuperFantome().getNumVie()==2) {
+                                if(jeu.getPacman().getModeTueur()==true){imageViewTab[i][j].setImage(fantomeRoseMangeable);}
+                                else{imageViewTab[i][j].setImage(fantomeRose);}
+                            }
+                             else{
+                                imageViewTab[i][j].setImage(fantomeMort);
+                            }
+
+                        }else if (jeu.getFantomeNormal().getX() == j && jeu.getFantomeNormal().getY() == i){
+                            if(jeu.getFantomeNormal().getNumVie()==2) {
                                 if(jeu.getPacman().getModeTueur()==true){imageViewTab[i][j].setImage(fantomeBleuMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeBleu);}
                             }
@@ -180,20 +189,25 @@ public class VueControleur extends Application {
 
                 jeu.getPacman().deplacement(deplacement);
                 jeu.getFantome().run();
-                jeu.getSuperFantome().run();
+                jeu.getFantomeNormal().run();
                 /**
                  * Affichage du score et des vies dans le TextFlow
                  */
                 scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
                 vieAffichage.setText(String.valueOf(jeu.getPacman().getNumVie()));
 
-                if(jeu.getFantome().getX()==jeu.getPacman().getX() && jeu.getFantome().getY()==jeu.getPacman().getY() ){
-                    jeu.getPacman().manger(jeu.getFantome());
-                    jeu.getFantome().manger(jeu.getPacman());
-                }
                 if(jeu.getSuperFantome().getX()==jeu.getPacman().getX() && jeu.getSuperFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getSuperFantome());
                     jeu.getSuperFantome().manger(jeu.getPacman());
+                }
+                 
+                else if(jeu.getFantomeNormal().getX()==jeu.getPacman().getX() && jeu.getFantomeNormal().getY()==jeu.getPacman().getY() ){
+                    jeu.getPacman().manger(jeu.getFantomeNormal());
+                    jeu.getFantomeNormal().manger(jeu.getPacman());
+                }
+                else if(jeu.getFantome().getX()==jeu.getPacman().getX() && jeu.getFantome().getY()==jeu.getPacman().getY() ){
+                    jeu.getPacman().manger(jeu.getFantome());
+                    jeu.getFantome().manger(jeu.getPacman());
                 }
 
             }
@@ -268,6 +282,7 @@ public class VueControleur extends Application {
 
         new Thread(jeu).start();
         new Thread(jeu.getFantome()).start();
+        new Thread(jeu.getFantomeNormal()).start();
         new Thread(jeu.getSuperFantome()).start();
 
     }

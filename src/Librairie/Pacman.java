@@ -23,7 +23,7 @@ public class Pacman extends Entite{
     private boolean modeTueur;
 
     public Pacman(Grille grille) {
-        super(2,5,grille);
+        super(2,4,grille);
         numVie=3;
         modeTueur=false;
     }
@@ -62,7 +62,7 @@ public class Pacman extends Entite{
 
 
   public boolean deplacement(Dir deplacement){
-        if (x==1 && y==1){this.setPosition(1,29);} // marche bien
+        if (x==1 && y==1){this.setPosition(1,25);} // marche bien
         //if (x==26 && y==29){this.setPosition(26,1);} // pas pris en compte
         for(int i = 0;i<grille.getVerticale();i++){
           for(int j = 0;j<grille.getHorizontale();j++){

@@ -21,6 +21,8 @@ public class FantomeInnocent extends Fantome {
 
     @Override
     public void run() {
+        if(x>=11 && x<=16 && x>=13 && x<=15)
+            this.revivre();
         int nombreChoisi = 1 + (int) (Math.random()*((4 - 1)+1));
         if(nombreChoisi == 1){
             this.deplacement(Dir.d);

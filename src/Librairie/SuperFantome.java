@@ -21,6 +21,20 @@ public class SuperFantome extends Fantome {
     
     @Override
     public void run(){
+        
+        while(true){
+        if((x>=9 && x<=18 && y>=13 && y<=21)){
+            this.revivre();
+             int nombreChoisi = 1 + (int) (Math.random()*((4 - 1)+1));
+                    if(nombreChoisi == 1){
+                        this.deplacement(Dir.d);
+                    }else if(nombreChoisi == 2){
+                        this.deplacement(Dir.g);
+                    }else if(nombreChoisi == 3){
+                        this.deplacement(Dir.h);
+                    }else{
+                           this.deplacement(Dir.b);}
+        }else{
         if(abs(distancePacman()[0])>=abs(distancePacman()[1])){
             if(abs(distancePacman()[0])>=0 ){
                 if(deplacement(Dir.g)){
@@ -104,6 +118,6 @@ public class SuperFantome extends Fantome {
         }
         
         
-    }
+    }}}
     
 }

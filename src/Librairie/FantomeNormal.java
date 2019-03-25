@@ -27,6 +27,8 @@ public class FantomeNormal extends Fantome{
     }
     @Override
     public void run(){
+        if(x>=11 && x<=16 && x>=13 && x<=15)
+            this.revivre();
         for (int j=0; j<grille.getCroisement().length-1;j++){
             if(grille.getCroisement()[j][0]==x){
                 for(int k=1; k<grille.getCroisement()[j].length-1;k++)
@@ -35,37 +37,22 @@ public class FantomeNormal extends Fantome{
                        if(grille.getTab()[j][k]>80){
                             if(grille.getTab()[x+1][y]>grille.getTab()[x-1][y] && grille.getTab()[x+1][y]>grille.getTab()[x][y+1]
                                     && grille.getTab()[x+1][y]>grille.getTab()[y][y-1]){
-                                    derniereDirection=Dir.b;
+                                    derniereDirection=Dir.d;
                                     this.deplacement(derniereDirection);}
                             else if(grille.getTab()[x-1][y]>grille.getTab()[x+1][y] && grille.getTab()[x-1][y]>grille.getTab()[x][y+1]
                                     && grille.getTab()[x-1][y]>grille.getTab()[x][y-1])
                             {
-                                derniereDirection=Dir.h;
+                                derniereDirection=Dir.g;
                                 this.deplacement(derniereDirection);}
                             else if(grille.getTab()[x][y+1]>grille.getTab()[x+1][y] && grille.getTab()[x][y+1]>grille.getTab()[x-1][y]
                                     && grille.getTab()[x][y+1]>grille.getTab()[x][y-1]){
-                                    derniereDirection=Dir.h;
+                                    derniereDirection=Dir.b;
                                     this.deplacement(derniereDirection);}
                             else if(grille.getTab()[x][y-1]>grille.getTab()[x+1][y] && grille.getTab()[x][y-1]>grille.getTab()[x][y+1]
                                     && grille.getTab()[x][y-1]>grille.getTab()[x-1][y]){
                                     derniereDirection=Dir.h;
                                     this.deplacement(derniereDirection);}
-                            /*else {
-                                int nombreChoisi = 1 + (int) (Math.random()*((4 - 1)+1));
-                                if(nombreChoisi == 1){
-                                    this.deplacement(Dir.d);
-                                    derniereDirection=Dir.d;
-                                }else if(nombreChoisi == 2){
-                                    this.deplacement(Dir.g);
-                                    derniereDirection=Dir.g;
-                                }else if(nombreChoisi == 3){
-                                    this.deplacement(Dir.h);
-                                    derniereDirection=Dir.h;
-                                }else{
-                                     this.deplacement(Dir.b);
-                                    derniereDirection=Dir.b;
-                                    }
-                                }*/
+                           
                             }
                         }
                     }

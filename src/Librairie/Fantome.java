@@ -63,6 +63,7 @@ public class Fantome extends Entite implements Runnable{
     @Override
     public void run() {
         if(x>=11 && x<=16 && x>=13 && x<=15)
+            this.revivre();
         this.deplacement(Dir.d);
     }
     
