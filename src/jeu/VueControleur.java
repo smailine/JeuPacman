@@ -22,6 +22,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Blend;
@@ -263,16 +265,19 @@ public class VueControleur extends Application {
          boutonReinitialisation.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 System.out.println( "Restarting app!" );
-                
-                /*primaryStage.close();
-                BorderPane borderPane = new BorderPane();
-                Scene newScene = new Scene(borderPane, Color.LIGHTBLUE);
-                primaryStage.setScene(newScene);
-                primaryStage.show();*/
                 jeu = new Jeu();
                 deplacement = Dir.h;
             }
         });
+         
+        if(jeu.getPacman().getNumVie()==0){
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("FIN DU JEU");
+            alert.setHeaderText("GAME OVER");
+            alert.setContentText("Vous n'avez plus de vie !");
+            alert.showAndWait();
+        }
+        
         primaryStage.setFullScreen(true);
         primaryStage.setTitle("Jeu Pacman");
         primaryStage.setScene(scene);
