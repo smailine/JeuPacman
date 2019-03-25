@@ -162,4 +162,15 @@ public class Grille {
             }
         return a;
     }
+    public boolean ttGrilleVisite(){
+        boolean a=true;
+        for(int i=0; i<tab.length;i++){
+            for(int j=0; j<tab[0].length;j++){
+                if(tab[i][j]==1 ||tab[i][j]==3){
+                    a=false;
+                }
+            }
+        }
+        return a;
+    }
 }

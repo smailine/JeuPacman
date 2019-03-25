@@ -112,15 +112,10 @@ public class VueControleur extends Application {
 
         for (int i = 0;i<largeur;i++) {
             for(int j = 0;j< longueur;j++){
-
                 ImageView imageView = new ImageView();
-
                 imageViewTab[i][j] = imageView;
                 gPane.add(imageView,j, i);
-
             }
-
-
         }
 
 
@@ -148,20 +143,20 @@ public class VueControleur extends Application {
 
                         if(jeu.getSuperFantome().getX() == j && jeu.getSuperFantome().getY() == i){
                             if(jeu.getFantome().getNumVie()==2) {
-                                if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeBleuMangeable);}
+                                if(jeu.getPacman().getModeTueur()==true){imageViewTab[i][j].setImage(fantomeBleuMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeBleu);}
                             }
-                             else if(jeu.getFantome().getNumVie()==1){
+                             else{
                                 imageViewTab[i][j].setImage(fantomeMort);
                             }
 
                         }
                         else if(jeu.getFantome().getX() == j && jeu.getFantome().getY() == i ){
                             if(jeu.getFantome().getNumVie()==2) {
-                                if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeJauneMangeable);}
+                                if(jeu.getPacman().getModeTueur()==true){imageViewTab[i][j].setImage(fantomeJauneMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeJaune);}
                             }
-                            else if(jeu.getFantome().getNumVie()==1){
+                            else{
                                 imageViewTab[i][j].setImage(fantomeMort);
                             }
 
@@ -178,13 +173,6 @@ public class VueControleur extends Application {
                                     imageViewTab[i][j].setImage(pacman_droite);
                                 }
                         }
-
-                            // }else if(jeu.getFantome().getX() == j && jeu.getFantome().getY() == i){
-                            //     imageViewTab[i][j].setImage(fantomeJaune);
-                            // }
-                            // else if(jeu.getSuperFantome().getX() == j && jeu.getSuperFantome().getY() == i){
-                            //     imageViewTab[i][j].setImage(fantomeBleu);
-                            // }
                     }
                 }
 
