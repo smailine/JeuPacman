@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -54,10 +55,11 @@ import jeu.Jeu;
 public class VueControleur extends Application {
     Dir deplacement = Dir.h;
     String score="0";
+    Jeu jeu = null;
     @Override
     public void start(Stage primaryStage) {
 
-        Jeu jeu = new Jeu();
+        jeu = new Jeu();
         int longueur = jeu.getGrille().getHorizontale();
         int largeur = jeu.getGrille().getVerticale();
 
@@ -196,20 +198,9 @@ public class VueControleur extends Application {
 
             }
             });
+       
 
-        gPane.setGridLinesVisible(false);
 
-        hb1.getChildren().addAll(labelScore,scoreAffichage);
-        hb1.setSpacing(10);
-        hb2.getChildren().addAll(labelVie,vieAffichage);
-        hb2.setSpacing(10);
-        infoJeu.getChildren().addAll(hb1,hb2);
-        paneScore.getChildren().addAll(infoJeu);
-        gPane.setGridLinesVisible(false);
-
-        border.setCenter(gPane);
-        border.setRight(paneScore);
-      ;
 
         Scene scene = new Scene(border, Color.LIGHTBLUE);
         /**
@@ -235,6 +226,18 @@ public class VueControleur extends Application {
         }
 
     });
+        gPane.setGridLinesVisible(false);
+
+        hb1.getChildren().addAll(labelScore,scoreAffichage);
+        hb1.setSpacing(10);
+        hb2.getChildren().addAll(labelVie,vieAffichage);
+        hb2.setSpacing(10);
+        infoJeu.getChildren().addAll(hb1,hb2,boutonReinitialisation);
+        paneScore.getChildren().addAll(infoJeu);
+        gPane.setGridLinesVisible(false);
+
+        border.setCenter(gPane);
+        border.setRight(paneScore);
         /**
          * Code ci-dessous nous permet de fermer la fenêtre avec la croix-rouge
          */
@@ -243,6 +246,19 @@ public class VueControleur extends Application {
             public void handle(WindowEvent t) {
                 Platform.exit();
                 System.exit(0);
+            }
+        });
+         boutonReinitialisation.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                System.out.println( "Restarting app!" );
+                
+                /*primaryStage.close();
+                BorderPane borderPane = new BorderPane();
+                Scene newScene = new Scene(borderPane, Color.LIGHTBLUE);
+                primaryStage.setScene(newScene);
+                primaryStage.show();*/
+                jeu = new Jeu();
+                deplacement = Dir.h;
             }
         });
         primaryStage.setFullScreen(true);
