@@ -84,6 +84,8 @@ public class VueControleur extends Application {
         Text vieAffichage = new Text();
         vieAffichage.setFont(new Font(30));
         Button boutonReinitialisation = new Button("Réinitialisation");
+        Text issuJeu = new Text();
+        issuJeu.setFont(new Font(30));
         /*Pane paneScore = new Pane();
         Label labelScore = new Label("Score");
         paneScore.getChildren().add(labelScore);
@@ -113,6 +115,9 @@ public class VueControleur extends Application {
         Image fantomeRoseMangeable = new Image("File:images/fantome_rose_bis.png");
         Image fantomeMort = new Image("File:images/mort.png");
         ImageView [][] imageViewTab = new ImageView[largeur][longueur];
+        
+        
+            
 
         for (int i = 0;i<largeur;i++) {
             for(int j = 0;j< longueur;j++){
@@ -188,6 +193,14 @@ public class VueControleur extends Application {
                  */
                 scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
                 vieAffichage.setText(String.valueOf(jeu.getPacman().getNumVie()));
+                
+                if(jeu.getPacman().getNumVie()==0){
+                    issuJeu.setText("Game Over, vous n'avez plus de vie");
+                }else if(jeu.getGrille().ttGrilleVisite()){
+                    issuJeu.setText("Vous avez gagné, décidemment vous êtes très fort");
+                }
+                
+                
 
                 if(jeu.getFantome().getX()==jeu.getPacman().getX() && jeu.getFantome().getY()==jeu.getPacman().getY() ){
                     jeu.getPacman().manger(jeu.getFantome());
@@ -197,7 +210,7 @@ public class VueControleur extends Application {
                     jeu.getPacman().manger(jeu.getSuperFantome());
                     jeu.getSuperFantome().manger(jeu.getPacman());
                 }
-
+                
             }
             });
        
@@ -234,15 +247,17 @@ public class VueControleur extends Application {
         hb1.setSpacing(10);
         hb2.getChildren().addAll(labelVie,vieAffichage);
         hb2.setSpacing(10);
-        infoJeu.getChildren().addAll(hb1,hb2,boutonReinitialisation);
+        infoJeu.getChildren().addAll(hb1,hb2,issuJeu,boutonReinitialisation);
         paneScore.getChildren().addAll(infoJeu);
         gPane.setGridLinesVisible(false);
 
         border.setCenter(gPane);
         border.setRight(paneScore);
+        
         /**
          * Code ci-dessous nous permet de fermer la fenêtre avec la croix-rouge
          */
+        
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
@@ -250,6 +265,9 @@ public class VueControleur extends Application {
                 System.exit(0);
             }
         });
+        /**
+         * Le bouton boutonReinitialisation permet de réinitialiser le jeu (on recommence du début)
+         */
          boutonReinitialisation.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 System.out.println( "Restarting app!" );
@@ -258,13 +276,7 @@ public class VueControleur extends Application {
             }
         });
          
-        if(jeu.getPacman().getNumVie()==0){
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("FIN DU JEU");
-            alert.setHeaderText("GAME OVER");
-            alert.setContentText("Vous n'avez plus de vie !");
-            alert.showAndWait();
-        }
+        
         
         primaryStage.setFullScreen(true);
         primaryStage.setTitle("Jeu Pacman");

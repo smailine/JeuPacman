@@ -63,7 +63,7 @@ public class Jeu extends Observable implements Runnable{
             setChanged();
             notifyObservers();
             try {
-                Thread.sleep(400);
+                Thread.sleep(200);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
             }
