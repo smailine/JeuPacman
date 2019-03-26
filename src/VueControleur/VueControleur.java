@@ -4,10 +4,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jeu;
+package VueControleur;
 
 import Librairie.Dir;
-import Librairie.newpackage.FantomeInnocent;
+import modele.FantomeInnocent;
 import Librairie.Grille;
 import java.awt.Graphics;
 import java.util.Observable;
@@ -50,7 +50,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
 import javafx.stage.WindowEvent;
-import jeu.Jeu;
+import modele.Jeu;
 
 /**
  *
@@ -61,6 +61,8 @@ public class VueControleur extends Application {
     String score="0";
     Jeu jeu = null;
     Boolean actif = false;
+    Text issuJeu = new Text();
+    
     @Override
     public void start(Stage primaryStage) {
 
@@ -87,7 +89,6 @@ public class VueControleur extends Application {
         Text vieAffichage = new Text();
         vieAffichage.setFont(new Font(30));
         Button boutonReinitialisation = new Button("Réinitialisation");
-        Text issuJeu = new Text();
         issuJeu.setFont(new Font(30));
         /*Pane paneScore = new Pane();
         Label labelScore = new Label("Score");
@@ -144,19 +145,19 @@ public class VueControleur extends Application {
                 /// mise à jours des images 
                 for(int i = 0;i< grilleJeu.getVerticale() ;i++){
                     for(int j = 0;j<grilleJeu.getHorizontale();j++){
-                        if(tab[i][j]==0){
+                        if(jeu.mur(i,j)){
                             imageViewTab[i][j].setImage(image);
-                        }else if(tab[i][j]==3){
+                        }else if(jeu.superPacgum(i,j)){
                             imageViewTab[i][j].setImage(superpacgum);
-                        }else if(tab[i][j]==1){
+                        }else if(jeu.pacgum(i,j)){
                             imageViewTab[i][j].setImage(pacgum);
                         }else{
                             imageViewTab[i][j].setImage(sansMur);
                         }
 
                          if(jeu.getSuperFantome().getX() == j && jeu.getSuperFantome().getY() == i){
-                            if(jeu.getSuperFantome().getNumVie()==2) {
-                                if(jeu.getPacman().getModeTueur()==true){imageViewTab[i][j].setImage(fantomeRoseMangeable);}
+                            if(jeu.totalVieFantome(jeu.getSuperFantome())) {
+                                if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeRoseMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeRose);}
                             }
                              else{
@@ -164,8 +165,8 @@ public class VueControleur extends Application {
                             }
 
                         }else if (jeu.getFantomeNormal().getX() == j && jeu.getFantomeNormal().getY() == i){
-                            if(jeu.getFantomeNormal().getNumVie()==2) {
-                                if(jeu.getPacman().getModeTueur()==true){imageViewTab[i][j].setImage(fantomeBleuMangeable);}
+                            if(jeu.totalVieFantome(jeu.getFantomeNormal())) {
+                                if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeBleuMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeBleu);}
                             }
                              else{
@@ -174,8 +175,8 @@ public class VueControleur extends Application {
 
                         }
                         else if(jeu.getFantome().getX() == j && jeu.getFantome().getY() == i ){
-                            if(jeu.getFantome().getNumVie()==2) {
-                                if(jeu.getPacman().getModeTueur()==true){imageViewTab[i][j].setImage(fantomeJauneMangeable);}
+                            if(jeu.totalVieFantome(jeu.getFantome())) {
+                                if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeJauneMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeJaune);}
                             }
                             else{
@@ -183,7 +184,7 @@ public class VueControleur extends Application {
                             }
 
                         }
-                        else if(jeu.getPacman().getX() == j && jeu.getPacman().getY() == i && jeu.getPacman().getNumVie()>0){
+                        else if(jeu.getPacman().getX() == j && jeu.getPacman().getY() == i && !jeu.getPacman().mort()){
 
                                 if(deplacement==Dir.b){
                                     imageViewTab[i][j].setImage(pacman_bas);
@@ -208,39 +209,14 @@ public class VueControleur extends Application {
                 scoreAffichage.setText(String.valueOf(jeu.getGrille().getScore()));
                 vieAffichage.setText(String.valueOf(jeu.getPacman().getNumVie()));
 
-                if(jeu.getPacman().getNumVie()==0){
+                if(jeu.getPacman().mort()){
                     issuJeu.setText("Game Over, plus de vie");
                     
                 }else if(jeu.getGrille().ttGrilleVisite()){
                     issuJeu.setText("Vous avez gagné, trop fort");
                 }
-                if(jeu.getPacman().getModeTueur() && !actif){
-                    Timer timer = new Timer();
-                    timer.schedule(new TimerTask(){
-                    public void run(){
-                        jeu.getPacman().changeMode();
-                        actif=false;
-                        jeu.setRapidite(200);
-                    }
-                    }, 10000);
-                    actif=true;
-                }
-                
-
-                ///Fonction pour manger les fantomes ou les pacman
-                if(jeu.getSuperFantome().getX()==jeu.getPacman().getX() && jeu.getSuperFantome().getY()==jeu.getPacman().getY() ){
-                    jeu.getPacman().manger(jeu.getSuperFantome());
-                    jeu.getSuperFantome().manger(jeu.getPacman());
-                }
-                else if(jeu.getFantomeNormal().getX()==jeu.getPacman().getX() && jeu.getFantomeNormal().getY()==jeu.getPacman().getY() ){
-                    jeu.getPacman().manger(jeu.getFantomeNormal());
-                    jeu.getFantomeNormal().manger(jeu.getPacman());
-                }
-                else if(jeu.getFantome().getX()==jeu.getPacman().getX() && jeu.getFantome().getY()==jeu.getPacman().getY() ){
-                    jeu.getPacman().manger(jeu.getFantome());
-                    jeu.getFantome().manger(jeu.getPacman());
-                }
-
+               
+              jeu.interationFantomePacman();
             }
             });
 
@@ -303,6 +279,8 @@ public class VueControleur extends Application {
                 System.out.println( "Restarting app!" );
                 jeu = new Jeu();
                 deplacement = Dir.h;
+                issuJeu.setText("");
+                issuJeu.setFont(new Font(30));
                 
             }
         });
