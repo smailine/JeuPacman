@@ -6,6 +6,9 @@
 package Librairie;
 
 import static java.lang.Math.abs;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jeu.Jeu;
 
 /**
  *
@@ -27,7 +30,8 @@ public class FantomeNormal extends Fantome{
     }
     @Override
     public void run(){
-        if(x>=11 && x<=16 && x>=13 && x<=15)
+        
+        if(y>=11 && y<=16 && x>=13 && x<=15)
             this.revivre();
         for (int j=0; j<grille.getCroisement().length-1;j++){
             if(grille.getCroisement()[j][0]==x){
@@ -51,8 +55,7 @@ public class FantomeNormal extends Fantome{
                             else if(grille.getTab()[x][y-1]>grille.getTab()[x+1][y] && grille.getTab()[x][y-1]>grille.getTab()[x][y+1]
                                     && grille.getTab()[x][y-1]>grille.getTab()[x-1][y]){
                                     derniereDirection=Dir.h;
-                                    this.deplacement(derniereDirection);}
-                           
+                                    this.deplacement(derniereDirection);}     
                             }
                         }
                     }

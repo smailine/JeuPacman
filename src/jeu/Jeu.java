@@ -25,14 +25,14 @@ public class Jeu extends Observable implements Runnable{
     private Pacman pacman;
     private FantomeInnocent fan;
     private FantomeNormal fanNorm;
-    private SuperFantome suFan;
+    private FantomeNormal suFan;
 
     public Jeu(){
        this.grille  = new Grille();
        this.pacman= new Pacman(grille);
        this.fan=new FantomeInnocent(14,12,grille);
        this.fanNorm=new FantomeNormal(15,14,grille);
-       this.suFan=new SuperFantome(14,13,grille,pacman);
+       this.suFan=new FantomeNormal(14,13,grille);
     }
 
     public Grille getGrille() {
@@ -45,7 +45,7 @@ public class Jeu extends Observable implements Runnable{
     public FantomeNormal getFantomeNormal() {
         return fanNorm;
     }
-     public SuperFantome getSuperFantome() {
+     public FantomeNormal getSuperFantome() {
         return suFan;
     }
     public Pacman getPacman() {

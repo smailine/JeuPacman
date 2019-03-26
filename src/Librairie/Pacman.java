@@ -20,7 +20,7 @@ import javafx.beans.Observable;
  */
 public class Pacman extends Entite{
     private int numVie=3;
-    private boolean modeTueur;
+   
 
     public Pacman(Grille grille) {
         super(2,4,grille);
@@ -38,17 +38,12 @@ public class Pacman extends Entite{
         }
     }
 
-
-
-
-
     public void manger(Fantome f){
-        if(f.getNumVie()>0 && this.getModeTueur()==true && f.getX()==this.getX() && f.getY()==this.getY())
+        if(f.getNumVie()>0 && this.getModeTueur())
             f.mort();
     }
 
     public void setPosition(int x, int y){
-
         this.x=x;
         this.y=y;
     }
@@ -62,19 +57,9 @@ public class Pacman extends Entite{
 
 
   public boolean deplacement(Dir deplacement){
-        if (x==1 && y==1){this.setPosition(1,25);} // marche bien
+        //if (x==1 && y==1){this.setPosition(1,25);} // marche bien
         //if (x==26 && y==29){this.setPosition(26,1);} // pas pris en compte
-        for(int i = 0;i<grille.getVerticale();i++){
-          for(int j = 0;j<grille.getHorizontale();j++){
-              if(grille.getTab()[i][j]>3){
-
-                  grille.setValeur(j,i,grille.getElement(j, i)-4);
-
-              }
-              else{
-              grille.setValeur(y,x,2);}
-          }
-        }// mise à jour des feremones
+      // mise à jour des feremones
 
         boolean rencontreMur = false;
         int tab[][] = this.grille.getTab();
@@ -88,9 +73,7 @@ public class Pacman extends Entite{
                         this.setY(y-1);
                         derniereDirection=Dir.h;
                         rencontreMur = false;
-                        grille.setScore(grille.getValeur(y, x));
-                        grille.setValeur(y, x, 4002);
-                        if(grille.getValeur(y, x)==100){this.changeMode();}
+                        Toto();
                     }
                 }else{
                     this.setY(grille.getVerticale()-1);
@@ -104,9 +87,7 @@ public class Pacman extends Entite{
                         this.setY(y+1);
                         rencontreMur = false;
                         derniereDirection=Dir.b;
-                        grille.setScore(grille.getValeur(y, x));
-                        grille.setValeur(y, x, 4002);
-                        if(grille.getValeur(y, x)==100){this.changeMode();}
+                        Toto();
                     }
                 }else{
                     this.setY(0);
@@ -121,9 +102,7 @@ public class Pacman extends Entite{
                         this.setX(x+1);
                         rencontreMur = false;
                         derniereDirection=Dir.d;
-                        grille.setScore(grille.getValeur(y, x));
-                        grille.setValeur(y, x, 4002);
-                        if(grille.getValeur(y, x)==100){this.changeMode();}
+                        Toto();
                     }
                 }else{
                     this.setX(0);
@@ -138,9 +117,7 @@ public class Pacman extends Entite{
                         this.setX(x-1);
                         rencontreMur = false;
                         derniereDirection=Dir.g;
-                        grille.setScore(grille.getValeur(y, x));
-                        grille.setValeur(y, x, 4002);
-                        if(grille.getValeur(y, x)==100){this.changeMode();}
+                        Toto();
                     }
                 }else{
                     this.setX(grille.getHorizontale()-1);
@@ -149,14 +126,26 @@ public class Pacman extends Entite{
 
         }
         }
+          for(int i = 0;i<grille.getVerticale();i++){
+          for(int j = 0;j<grille.getHorizontale();j++){
+              if(grille.getTab()[i][j]>3){
+
+                  grille.setValeur(j,i,grille.getElement(j, i)-4);
+
+              }
+              else{
+              grille.setValeur(y,x,2);}
+          }
+        }
 
         return rencontreMur;
     }
 
+  public void Toto(){
+      grille.setScore(grille.getValeur(y, x));
+      if(grille.getValeur(y, x)==100 && !this.modeTueur){this.changeMode();}
+      grille.setValeur(y, x, 4002);               
+  }
 
 
-
- public static void main(String[] args) {
-   System.out.println( "\n\nvie pacman: " + new Pacman(new Grille()).getNumVie()+"\n\n");
-   }
 }

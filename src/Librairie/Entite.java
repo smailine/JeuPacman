@@ -113,15 +113,7 @@ public class Entite {
         this.grille = grille;
     }
 
-    public void changeMode(){
-            modeTueur=!modeTueur;
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Entite.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            modeTueur=!modeTueur;
-            }
+    public void changeMode(){ modeTueur=!modeTueur;}
     }
 
 
