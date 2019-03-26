@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Librairie;
+package Librairie.newpackage;
 
+import Librairie.Dir;
+import Librairie.Grille;
+import Librairie.newpackage.Fantome;
 import static java.lang.Math.abs;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -4,8 +4,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Librairie;
+package Librairie.newpackage;
 
+import Librairie.Dir;
+import Librairie.Entite;
+import Librairie.Grille;
+import Librairie.newpackage.Fantome;
 import java.util.Scanner;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;

@@ -5,6 +5,7 @@
  */
 package jeu;
 
+import Librairie.newpackage.Pacman;
 import java.util.Observable;
 import java.util.Observer;
 import Librairie.*;

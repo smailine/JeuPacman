@@ -5,10 +5,15 @@
  */
 package jeu;
 
+import Librairie.newpackage.FantomeInnocent;
+import Librairie.newpackage.Pacman;
+import Librairie.newpackage.FantomeNormal;
+import Librairie.newpackage.Fantome;
 import Librairie.*;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Librairie.newpackage.*;
 
 
 /**
@@ -26,6 +31,7 @@ public class Jeu extends Observable implements Runnable{
     private FantomeInnocent fan;
     private FantomeNormal fanNorm;
     private FantomeNormal suFan;
+    private int rapidite;
 
     public Jeu(){
        this.grille  = new Grille();
@@ -33,6 +39,8 @@ public class Jeu extends Observable implements Runnable{
        this.fan=new FantomeInnocent(14,12,grille);
        this.fanNorm=new FantomeNormal(15,14,grille);
        this.suFan=new FantomeNormal(14,13,grille);
+       this.rapidite=300;
+       
     }
 
     public Grille getGrille() {
@@ -68,14 +76,14 @@ public class Jeu extends Observable implements Runnable{
             setChanged();
             notifyObservers();
             try {
-                Thread.sleep(200);
+                Thread.sleep(rapidite);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Jeu.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
     }
-
+public void setRapidite(int rap){rapidite=rap;}
 
     public static void main(String[] args) {
         Jeu j = new Jeu();

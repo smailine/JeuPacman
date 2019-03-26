@@ -3,7 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Librairie;
+package Librairie.newpackage;
+
+import Librairie.Dir;
+import Librairie.Entite;
+import Librairie.Grille;
 
 /**
  *

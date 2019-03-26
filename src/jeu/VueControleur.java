@@ -7,7 +7,7 @@
 package jeu;
 
 import Librairie.Dir;
-import Librairie.FantomeInnocent;
+import Librairie.newpackage.FantomeInnocent;
 import Librairie.Grille;
 import java.awt.Graphics;
 import java.util.Observable;
@@ -209,10 +209,10 @@ public class VueControleur extends Application {
                 vieAffichage.setText(String.valueOf(jeu.getPacman().getNumVie()));
 
                 if(jeu.getPacman().getNumVie()==0){
-                    issuJeu.setText("Game Over, vous n'avez plus de vie");
+                    issuJeu.setText("Game Over, plus de vie");
                     
                 }else if(jeu.getGrille().ttGrilleVisite()){
-                    issuJeu.setText("Vous avez gagné, décidemment vous êtes très fort");
+                    issuJeu.setText("Vous avez gagné, trop fort");
                 }
                 if(jeu.getPacman().getModeTueur() && !actif){
                     Timer timer = new Timer();
@@ -220,6 +220,7 @@ public class VueControleur extends Application {
                     public void run(){
                         jeu.getPacman().changeMode();
                         actif=false;
+                        jeu.setRapidite(200);
                     }
                     }, 10000);
                     actif=true;
@@ -302,6 +303,7 @@ public class VueControleur extends Application {
                 System.out.println( "Restarting app!" );
                 jeu = new Jeu();
                 deplacement = Dir.h;
+                
             }
         });
 
