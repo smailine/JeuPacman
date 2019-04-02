@@ -54,7 +54,13 @@ import modele.Jeu;
 
 /**
  *
- * @author freder
+ * @author 11506559
+ *
+ */
+/**
+ * 
+ *  classe permettant d'afficher l'etat actuel du jeu et d'avoir les informations saisies
+ *par l'utilisateur
  */
 public class VueControleur extends Application {
     Dir deplacement = Dir.h;
@@ -63,6 +69,11 @@ public class VueControleur extends Application {
     Boolean actif = false;
     Text issuJeu = new Text();
     
+    
+    /**
+     * gere l'affichage en fonction de l'etat du jeu et de recupere les informations saisies par l'utilisateur 
+     * il permet egalement d'initaliser un nouveau jeu
+     */
     @Override
     public void start(Stage primaryStage) {
 
@@ -155,8 +166,8 @@ public class VueControleur extends Application {
                             imageViewTab[i][j].setImage(sansMur);
                         }
 
-                         if(jeu.getSuperFantome().getX() == j && jeu.getSuperFantome().getY() == i){
-                            if(jeu.totalVieFantome(jeu.getSuperFantome())) {
+                         if(jeu.getFantomeNormal1().getX() == j && jeu.getFantomeNormal1().getY() == i){
+                            if(jeu.totalVieFantome(jeu.getFantomeNormal1())) {
                                 if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeRoseMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeRose);}
                             }
@@ -174,8 +185,8 @@ public class VueControleur extends Application {
                             }
 
                         }
-                        else if(jeu.getFantome().getX() == j && jeu.getFantome().getY() == i ){
-                            if(jeu.totalVieFantome(jeu.getFantome())) {
+                        else if(jeu.getFantomeInnocent().getX() == j && jeu.getFantomeInnocent().getY() == i ){
+                            if(jeu.totalVieFantome(jeu.getFantomeInnocent())) {
                                 if(jeu.getPacman().getModeTueur()){imageViewTab[i][j].setImage(fantomeJauneMangeable);}
                                 else{imageViewTab[i][j].setImage(fantomeJaune);}
                             }
@@ -200,9 +211,9 @@ public class VueControleur extends Application {
                 }
 
                 jeu.getPacman().deplacement(deplacement);
-                jeu.getFantome().run();
+                jeu.getFantomeInnocent().run();
                 jeu.getFantomeNormal().run();
-                jeu.getSuperFantome().run();
+                jeu.getFantomeNormal1().run();
                 /**
                  * Affichage du score et des vies dans le TextFlow
                  */
@@ -293,9 +304,9 @@ public class VueControleur extends Application {
         primaryStage.show();
 
         new Thread(jeu).start();
-        new Thread(jeu.getFantome()).start();
+        new Thread(jeu.getFantomeInnocent()).start();
         new Thread(jeu.getFantomeNormal()).start();
-        new Thread(jeu.getSuperFantome()).start();
+        new Thread(jeu.getFantomeNormal1()).start();
 
     }
 

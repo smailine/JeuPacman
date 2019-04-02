@@ -13,24 +13,35 @@ import Librairie.*;
 /**
  *
  * @author p1506559
+ *
  */
 
-
+/**
+ * 
+ *  classe permettant d'afficher la grille d'un jeu
+ */
 public class Console implements Observer{
     private Jeu jeu;
-    
+    /**
+     * constructeur sans parametre 
+     */
     public Console(){
         this.jeu = new Jeu();
     }
-    
+    /**
+     * 
+     * @param jeu 
+     * constructeur qui permet d'atribuer un jeu à la console 
+     */
     public Console(Jeu jeu){
         this.jeu = jeu;
     }
     
     /**
      * Avec l'interface graphique, nous allons mettre des cases à afficher
-     * @param o
-     * @param arg 
+     * @param o les classe qui la console observer
+     * @param arg  un objet
+     * a chaque notification du jeu on affiche la ,grille du jeu avec la position du pacman
      */
     @Override
     public void update(Observable o, Object arg) {

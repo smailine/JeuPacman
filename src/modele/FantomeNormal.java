@@ -15,8 +15,20 @@ import java.util.logging.Logger;
 /**
  *
  * @author cardo
+ * 
+ */
+/**
+ * 
+ * classe representant un fantome heritant de fantome 
  */
 public class FantomeNormal extends Fantome{
+    /**
+     * 
+     * @param x position horizontale 
+     * @param y position verticale 
+     * @param grille  grille atribue au fantome
+     * constructeur qui attribue une position et une grille au fantome. donne la derniére position du fantome: droite
+     */
     public FantomeNormal(int x, int y, Grille grille) {
         super(x,y,grille);
         derniereDirection=Dir.h;
@@ -24,12 +36,12 @@ public class FantomeNormal extends Fantome{
         
     }
     
-    public static void main(String[] args ){
-        Fantome a=new Fantome(14,16,new Grille());
-        Pacman b=new Pacman(new Grille());
-        b.manger(a);
-        System.out.println(a.getNumVie());
-    }
+  
+    
+    /**
+     * fonction qui gère les déplacements du fantôme et le permet de choisir sa 
+     * position soit aléatoirement soit dans les croisements en choisissant la case de plus grande valeur 
+     */
     @Override
     public void run(){
         

@@ -17,15 +17,30 @@ import java.util.logging.Logger;
 /**
  *
  * @author cardo
+ * 
+ */
+/**
+ * 
+ * classe representant un fantome heritant de fantome avec une deplacement aleatoire
  */
 public class FantomeInnocent extends Fantome {
-
+/**
+ * 
+ * @param x position horizontale.
+ * @param y position verticale. 
+ * @param grille la grille atribue au fantome.
+ * constructeur qui attribue une position et une grille au fantome.
+ */
     public FantomeInnocent(int x, int y, Grille grille) {
         super(x,y,grille);
     }
 
 
 
+    
+    /**
+     * permet de gerer les deplacements du fantome 
+     */
     @Override
     public void run() {
         
